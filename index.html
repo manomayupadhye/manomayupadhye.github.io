@@ -10,14 +10,12 @@
       --bg: #F5F5EF;
       --header-bg: #F6F5F0;
       --text: #111111;
-      --accent: #222222;
       --border: #DDDDD7;
       --font-header: 'Source Sans Pro', sans-serif;
-      --font-body: 'Noto Sans', sans-serif; /* Fallback; Souliyo Unicode must be locally installed */
+      --font-body: 'Noto Sans', sans-serif;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -28,54 +26,31 @@
       min-height: 100vh;
     }
 
-    /* ─── HEADER ────────────────────────────────────────────────── */
+    /* ─── HEADER ─────────────────────────────────────────────── */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--header-bg);
       border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 56px;
-      height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 56px; height: 72px;
     }
 
     .logo {
-      font-family: var(--font-header);
-      font-size: 36px;
-      font-weight: 400;
-      letter-spacing: -0.5px;
-      color: var(--text);
-      text-decoration: none;
+      font-family: var(--font-header); font-size: 36px; font-weight: 400;
+      letter-spacing: -0.5px; color: var(--text); text-decoration: none;
     }
 
-    nav {
-      display: flex;
-      gap: 48px;
-      align-items: center;
-    }
+    nav { display: flex; gap: 48px; align-items: center; }
 
     nav a {
-      font-family: var(--font-header);
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--text);
-      text-decoration: none;
-      opacity: 0.55;
-      letter-spacing: 0.02em;
-      transition: opacity 0.2s;
-      position: relative;
+      font-family: var(--font-header); font-size: 18px; font-weight: 400;
+      color: var(--text); text-decoration: none; opacity: 0.55;
+      letter-spacing: 0.02em; transition: opacity 0.2s; position: relative;
     }
 
     nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px; left: 0;
-      width: 0; height: 1px;
-      background: var(--text);
-      transition: width 0.25s ease;
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--text); transition: width 0.25s ease;
     }
 
     nav a:hover { opacity: 1; }
@@ -83,424 +58,297 @@
     nav a.active { opacity: 1; }
     nav a.active::after { width: 100%; }
 
-    /* ─── PAGES ─────────────────────────────────────────────────── */
-    .page {
-      display: none;
-      min-height: 100vh;
-      padding-top: 72px;
-    }
-
+    /* ─── PAGES ──────────────────────────────────────────────── */
+    .page { display: none; min-height: 100vh; padding-top: 72px; }
     .page.active { display: block; }
 
-    /* ─── HOME ──────────────────────────────────────────────────── */
-    #home {
-      padding-top: 72px;
-    }
-
-    .hero {
-      padding: 80px 56px 60px;
-    }
+    /* ─── HOME ───────────────────────────────────────────────── */
+    .hero { padding: 80px 56px 60px; }
 
     .hero h1 {
-      font-family: var(--font-header);
-      font-size: 36px;
-      font-weight: 400;
-      line-height: 1.3;
-      max-width: 640px;
-      margin-bottom: 18px;
+      font-family: var(--font-header); font-size: 36px; font-weight: 400;
+      line-height: 1.3; max-width: 640px; margin-bottom: 18px;
     }
 
-    .hero p {
-      font-size: 22px;
-      opacity: 0.6;
-      max-width: 520px;
-      line-height: 1.6;
-      margin-bottom: 48px;
-    }
+    .hero p { font-size: 22px; opacity: 0.6; max-width: 520px; line-height: 1.6; }
 
     .section-label {
-      font-family: var(--font-header);
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0.4;
-      padding: 0 56px;
-      margin-bottom: 24px;
+      font-family: var(--font-header); font-size: 13px; letter-spacing: 0.14em;
+      text-transform: uppercase; opacity: 0.4; padding: 0 56px; margin-bottom: 24px;
     }
 
-    /* ─── HORIZONTAL SCROLL ─────────────────────────────────────── */
-    .projects-scroll-wrap {
-      padding: 0 56px 80px;
-      overflow: hidden;
-    }
+    .projects-scroll-wrap { padding: 0 56px 80px; overflow: hidden; }
 
     .projects-scroll {
-      display: flex;
-      gap: 24px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 20px;
-      cursor: grab;
+      display: flex; gap: 24px; overflow-x: auto;
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      padding-bottom: 20px; cursor: grab;
     }
 
     .projects-scroll:active { cursor: grabbing; }
-
-    .projects-scroll::-webkit-scrollbar {
-      height: 4px;
-    }
-
-    .projects-scroll::-webkit-scrollbar-track {
-      background: var(--border);
-      border-radius: 4px;
-    }
-
-    .projects-scroll::-webkit-scrollbar-thumb {
-      background: var(--text);
-      border-radius: 4px;
-      opacity: 0.4;
-    }
+    .projects-scroll::-webkit-scrollbar { height: 4px; }
+    .projects-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 4px; }
+    .projects-scroll::-webkit-scrollbar-thumb { background: var(--text); border-radius: 4px; }
 
     .project-card {
-      flex: 0 0 340px;
-      height: 420px;
-      scroll-snap-align: start;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
-      background: var(--header-bg);
+      flex: 0 0 340px; height: 420px; scroll-snap-align: start;
+      border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+      cursor: pointer; position: relative; background: var(--header-bg);
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.08);
-    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.08); }
 
-    .card-thumb {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      display: block;
-      background: var(--border);
-      position: relative;
-      overflow: hidden;
-    }
+    .card-thumb { width: 100%; height: 240px; background: var(--border); overflow: hidden; }
+    .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .card-thumb-inner {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-header);
-      font-size: 72px;
-      opacity: 0.15;
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-header); font-size: 72px; opacity: 0.15;
     }
 
-    .card-body {
-      padding: 24px 24px 20px;
-    }
+    .card-body { padding: 24px 24px 20px; }
 
     .card-tag {
-      font-family: var(--font-header);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0.4;
-      margin-bottom: 10px;
+      font-family: var(--font-header); font-size: 11px; letter-spacing: 0.14em;
+      text-transform: uppercase; opacity: 0.4; margin-bottom: 10px;
     }
 
-    .card-title {
-      font-family: var(--font-header);
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      line-height: 1.2;
-    }
-
-    .card-desc {
-      font-size: 16px;
-      opacity: 0.55;
-      line-height: 1.5;
-    }
+    .card-title { font-family: var(--font-header); font-size: 22px; font-weight: 600; margin-bottom: 10px; line-height: 1.2; }
+    .card-desc { font-size: 16px; opacity: 0.55; line-height: 1.5; }
 
     .card-arrow {
-      position: absolute;
-      bottom: 20px; right: 20px;
-      font-size: 20px;
-      opacity: 0.3;
-      transition: opacity 0.2s, transform 0.2s;
+      position: absolute; bottom: 20px; right: 20px; font-size: 20px;
+      opacity: 0.3; transition: opacity 0.2s, transform 0.2s;
     }
 
-    .project-card:hover .card-arrow {
-      opacity: 0.8;
-      transform: translateX(4px);
-    }
+    .project-card:hover .card-arrow { opacity: 0.8; transform: translateX(4px); }
 
-    /* ─── PROJECTS PAGE ──────────────────────────────────────────── */
-    #projects {
-      padding: 72px 0 0;
-    }
-
-    .projects-header {
-      padding: 60px 56px 40px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .projects-header h1 {
-      font-family: var(--font-header);
-      font-size: 36px;
-      font-weight: 400;
-    }
+    /* ─── PROJECTS LIST ──────────────────────────────────────── */
+    .projects-header { padding: 60px 56px 40px; border-bottom: 1px solid var(--border); }
+    .projects-header h1 { font-family: var(--font-header); font-size: 36px; font-weight: 400; }
 
     .project-slide {
-      padding: 64px 56px;
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-      min-height: 60vh;
-    }
-
-    .project-slide:nth-child(even) {
-      grid-template-columns: 1fr 1fr;
+      padding: 64px 56px; border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center; min-height: 60vh;
     }
 
     .project-slide:nth-child(even) .slide-visual { order: 2; }
     .project-slide:nth-child(even) .slide-content { order: 1; }
 
     .slide-visual {
-      aspect-ratio: 4/3;
-      background: var(--header-bg);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-header);
-      font-size: 96px;
-      opacity: 0.12;
+      aspect-ratio: 4/3; background: var(--header-bg);
+      border: 1px solid var(--border); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-header); font-size: 96px; opacity: 0.12; overflow: hidden;
     }
 
-    .slide-content {}
+    .slide-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .slide-num {
-      font-family: var(--font-header);
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      opacity: 0.35;
-      margin-bottom: 20px;
+      font-family: var(--font-header); font-size: 12px; letter-spacing: 0.16em;
+      text-transform: uppercase; opacity: 0.35; margin-bottom: 20px;
     }
 
-    .slide-title {
-      font-family: var(--font-header);
-      font-size: 36px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      line-height: 1.15;
-    }
+    .slide-title { font-family: var(--font-header); font-size: 36px; font-weight: 600; margin-bottom: 16px; line-height: 1.15; }
 
-    .slide-tag-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
+    .slide-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
 
     .slide-tag {
-      font-family: var(--font-header);
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid var(--border);
-      padding: 4px 12px;
-      border-radius: 2px;
+      font-family: var(--font-header); font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; border: 1px solid var(--border); padding: 4px 12px; border-radius: 2px;
     }
 
-    .slide-desc {
-      font-size: 20px;
-      line-height: 1.65;
-      opacity: 0.7;
-      margin-bottom: 32px;
-    }
+    .slide-desc { font-size: 20px; line-height: 1.65; opacity: 0.7; margin-bottom: 32px; }
 
     .slide-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-header);
-      font-size: 16px;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      color: var(--text);
-      border-bottom: 1px solid var(--text);
-      padding-bottom: 2px;
-      opacity: 0.7;
-      transition: opacity 0.2s;
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-header); font-size: 16px; letter-spacing: 0.04em;
+      text-decoration: none; color: var(--text); border-bottom: 1px solid var(--text);
+      padding-bottom: 2px; opacity: 0.7; transition: opacity 0.2s; cursor: pointer;
     }
 
     .slide-link:hover { opacity: 1; }
 
-    /* ─── ABOUT PAGE ─────────────────────────────────────────────── */
-    #about {
-      padding: 72px 0 0;
+    /* ─── PROJECT DETAIL ─────────────────────────────────────── */
+    .detail-back {
+      display: block; padding: 32px 56px 0;
+      font-family: var(--font-header); font-size: 14px; letter-spacing: 0.06em;
+      text-transform: uppercase; opacity: 0.45; cursor: pointer;
+      text-decoration: none; color: var(--text); transition: opacity 0.2s;
     }
 
-    .about-inner {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 80px 56px;
+    .detail-back:hover { opacity: 0.9; }
+
+    /* Title left / hero image right */
+    .detail-top {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border); min-height: 72vh;
     }
 
-    .about-inner h1 {
-      font-family: var(--font-header);
-      font-size: 36px;
-      font-weight: 400;
-      margin-bottom: 48px;
+    .detail-intro {
+      padding: 48px 56px 64px; border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
     }
 
-    .about-body p {
-      font-size: 22px;
-      line-height: 1.75;
-      opacity: 0.75;
-      margin-bottom: 28px;
+    .detail-title {
+      font-family: var(--font-header); font-size: 36px; font-weight: 600;
+      line-height: 1.1; margin-bottom: 16px;
     }
+
+    .detail-subtitle {
+      font-family: var(--font-header); font-size: 20px; font-weight: 400;
+      opacity: 0.5; margin-bottom: 28px; line-height: 1.4;
+    }
+
+    .detail-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+
+    .detail-tag {
+      font-family: var(--font-header); font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; border: 1px solid var(--border); padding: 5px 14px; border-radius: 2px;
+    }
+
+    .detail-description { font-size: 20px; line-height: 1.8; opacity: 0.7; }
+    .detail-description p { margin-bottom: 20px; }
+    .detail-description p:last-child { margin-bottom: 0; }
+
+    .detail-hero-img { background: var(--border); overflow: hidden; position: relative; }
+    .detail-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .detail-hero-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-header); font-size: 120px; opacity: 0.1;
+    }
+
+    /* Meta row */
+    .detail-meta { display: flex; border-bottom: 1px solid var(--border); }
+
+    .detail-meta-item { flex: 1; padding: 36px 40px; border-right: 1px solid var(--border); }
+    .detail-meta-item:last-child { border-right: none; }
+
+    .detail-meta-label {
+      font-family: var(--font-header); font-size: 11px; letter-spacing: 0.14em;
+      text-transform: uppercase; opacity: 0.4; margin-bottom: 10px;
+    }
+
+    .detail-meta-value { font-family: var(--font-header); font-size: 18px; }
+
+    .detail-meta-value a {
+      color: var(--text); text-decoration: none;
+      border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: border-color 0.2s;
+    }
+
+    .detail-meta-value a:hover { border-color: var(--text); }
+
+    /* Gallery row */
+    .detail-gallery { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--border); }
+
+    .detail-gallery-item {
+      aspect-ratio: 4/3; background: var(--header-bg);
+      border-right: 1px solid var(--border); overflow: hidden;
+    }
+
+    .detail-gallery-item:last-child { border-right: none; }
+    .detail-gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .detail-gallery-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-header); font-size: 48px; opacity: 0.1;
+    }
+
+    /* Next project */
+    .detail-next {
+      padding: 56px; display: flex; justify-content: space-between;
+      align-items: center; cursor: pointer; transition: background 0.2s;
+    }
+
+    .detail-next:hover { background: var(--header-bg); }
+
+    .detail-next-label {
+      font-family: var(--font-header); font-size: 13px; letter-spacing: 0.14em;
+      text-transform: uppercase; opacity: 0.4; margin-bottom: 8px;
+    }
+
+    .detail-next-title { font-family: var(--font-header); font-size: 28px; font-weight: 400; }
+
+    .detail-next-arrow { font-size: 32px; opacity: 0.3; transition: transform 0.2s, opacity 0.2s; }
+    .detail-next:hover .detail-next-arrow { transform: translateX(8px); opacity: 0.8; }
+
+    /* ─── ABOUT ──────────────────────────────────────────────── */
+    .about-inner { max-width: 780px; margin: 0 auto; padding: 80px 56px; }
+
+    .about-inner h1 { font-family: var(--font-header); font-size: 36px; font-weight: 400; margin-bottom: 48px; }
+
+    .about-body p { font-size: 22px; line-height: 1.75; opacity: 0.75; margin-bottom: 28px; }
 
     .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 56px;
-      padding-top: 48px;
-      border-top: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      margin-top: 56px; padding-top: 48px; border-top: 1px solid var(--border);
     }
 
     .skill-group h3 {
-      font-family: var(--font-header);
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0.4;
-      margin-bottom: 16px;
+      font-family: var(--font-header); font-size: 13px; letter-spacing: 0.14em;
+      text-transform: uppercase; opacity: 0.4; margin-bottom: 16px;
     }
 
-    .skill-group ul {
-      list-style: none;
-    }
+    .skill-group ul { list-style: none; }
+    .skill-group li { font-size: 20px; opacity: 0.7; padding: 6px 0; border-bottom: 1px solid var(--border); }
 
-    .skill-group li {
-      font-size: 20px;
-      opacity: 0.7;
-      padding: 6px 0;
-      border-bottom: 1px solid var(--border);
-    }
+    /* ─── CONTACT ────────────────────────────────────────────── */
+    .contact-inner { max-width: 640px; margin: 0 auto; padding: 80px 56px; }
 
-    /* ─── CONTACT PAGE ───────────────────────────────────────────── */
-    #contact {
-      padding: 72px 0 0;
-    }
+    .contact-inner h1 { font-family: var(--font-header); font-size: 36px; font-weight: 400; margin-bottom: 16px; }
 
-    .contact-inner {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 80px 56px;
-    }
-
-    .contact-inner h1 {
-      font-family: var(--font-header);
-      font-size: 36px;
-      font-weight: 400;
-      margin-bottom: 16px;
-    }
-
-    .contact-inner .sub {
-      font-size: 20px;
-      opacity: 0.55;
-      margin-bottom: 56px;
-      line-height: 1.6;
-    }
+    .contact-inner .sub { font-size: 20px; opacity: 0.55; margin-bottom: 56px; line-height: 1.6; }
 
     .contact-form label {
-      display: block;
-      font-family: var(--font-header);
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.5;
-      margin-bottom: 8px;
+      display: block; font-family: var(--font-header); font-size: 13px;
+      letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-bottom: 8px;
     }
 
     .contact-form input,
     .contact-form textarea {
-      display: block;
-      width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--border);
-      padding: 12px 0;
-      font-family: var(--font-body);
-      font-size: 20px;
-      color: var(--text);
-      outline: none;
-      margin-bottom: 36px;
-      transition: border-color 0.2s;
-      resize: none;
+      display: block; width: 100%; background: transparent; border: none;
+      border-bottom: 1px solid var(--border); padding: 12px 0;
+      font-family: var(--font-body); font-size: 20px; color: var(--text);
+      outline: none; margin-bottom: 36px; transition: border-color 0.2s; resize: none;
     }
 
     .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: var(--text);
-    }
+    .contact-form textarea:focus { border-color: var(--text); }
 
-    .contact-form textarea {
-      min-height: 120px;
-    }
+    .contact-form textarea { min-height: 120px; }
 
     .contact-form button {
-      font-family: var(--font-header);
-      font-size: 16px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: var(--text);
-      color: var(--bg);
-      border: none;
-      padding: 16px 40px;
-      cursor: pointer;
-      transition: opacity 0.2s;
+      font-family: var(--font-header); font-size: 16px; letter-spacing: 0.08em;
+      text-transform: uppercase; background: var(--text); color: var(--bg);
+      border: none; padding: 16px 40px; cursor: pointer; transition: opacity 0.2s;
     }
 
     .contact-form button:hover { opacity: 0.75; }
 
-    .contact-links {
-      margin-top: 64px;
-      padding-top: 48px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+    .contact-links { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border); }
 
     .contact-link {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 20px;
-      text-decoration: none;
-      color: var(--text);
-      opacity: 0.6;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      transition: opacity 0.2s;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 20px; text-decoration: none; color: var(--text);
+      opacity: 0.6; padding: 16px 0; border-bottom: 1px solid var(--border); transition: opacity 0.2s;
     }
 
     .contact-link:hover { opacity: 1; }
 
-    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .detail-top { grid-template-columns: 1fr; min-height: auto; }
+      .detail-intro { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 24px; }
+      .detail-hero-img { min-height: 50vw; }
+      .detail-gallery { grid-template-columns: 1fr 1fr; }
+      .detail-gallery-item:last-child { display: none; }
+      .detail-meta { flex-wrap: wrap; }
+      .detail-meta-item { flex: 0 0 50%; border-bottom: 1px solid var(--border); }
+    }
+
     @media (max-width: 768px) {
       header { padding: 0 24px; }
       nav { gap: 24px; }
@@ -513,42 +361,45 @@
       .projects-header { padding: 40px 24px 32px; }
       .about-inner, .contact-inner { padding: 60px 24px; }
       .skills-grid { grid-template-columns: 1fr; }
+      .detail-back { padding: 24px 24px 0; }
+      .detail-next { padding: 40px 24px; }
+      .detail-gallery { grid-template-columns: 1fr; }
+      .detail-gallery-item:not(:first-child) { display: none; }
+      .detail-meta-item { flex: 0 0 100%; }
     }
   </style>
 </head>
 <body>
 
   <header>
-<a href="#" onclick="showPage('home')" style="display:flex;align-items:center;">
-  <img src="images/manomay-monogramblack.svg" alt="Your Name" style="height:50px;width:auto;">
-</a>    <nav>
-      <a href="#" onclick="showPage('projects')" data-page="projects">Projects</a>
-      <a href="#" onclick="showPage('about')" data-page="about">About Me</a>
-      <a href="#" onclick="showPage('contact')" data-page="contact">Contact</a>
+    <a href="#" onclick="showPage('home')" style="display:flex;align-items:center;">
+  <img src="images/manomay-monogramblack.svg" alt="ManomayMonogramSVG" style="height:50px;width:auto;">
+</a>
+    <nav>
+      <a href="#" data-page="projects">Projects</a>
+      <a href="#" data-page="about">About Me</a>
+      <a href="#" data-page="contact">Contact</a>
     </nav>
   </header>
 
-  <!-- ── HOME ─────────────────────────────────────────────── -->
+  <!-- ══════ HOME ══════ -->
   <div id="home" class="page active">
     <div class="hero">
-      <h1>Designed with intent.<br>Designed with intention.</h1>
-      <p>A collection of work across product design, web development, wood working and rapid prototyping.</p>
+      <h1>Designed with integrity.<br>Designed with intention.</h1>
+      <p>A collection of work across product design, web development, and .</p>
     </div>
-
     <div class="section-label">Selected Projects</div>
     <div class="projects-scroll-wrap">
       <div class="projects-scroll" id="homeScroll">
-
         <div class="project-card" onclick="goToProject(0)">
           <div class="card-thumb"><div class="card-thumb-inner">◈</div></div>
           <div class="card-body">
             <div class="card-tag">Product Design</div>
-            <div class="card-title">Bajaj SmopkeChamp</div>
-            <div class="card-desc">An affordable and reliable smoke detection solution tailored for Indian households</div>
+            <div class="card-title">Bajaj Smoke Champ</div>
+            <div class="card-desc">An affordable and easy-to-use smoke detection solution tailored for Indian households.</div>
           </div>
           <div class="card-arrow">→</div>
         </div>
-
         <div class="project-card" onclick="goToProject(1)">
           <div class="card-thumb"><div class="card-thumb-inner">◇</div></div>
           <div class="card-body">
@@ -558,7 +409,6 @@
           </div>
           <div class="card-arrow">→</div>
         </div>
-
         <div class="project-card" onclick="goToProject(2)">
           <div class="card-thumb"><div class="card-thumb-inner">△</div></div>
           <div class="card-body">
@@ -568,7 +418,6 @@
           </div>
           <div class="card-arrow">→</div>
         </div>
-
         <div class="project-card" onclick="goToProject(3)">
           <div class="card-thumb"><div class="card-thumb-inner">○</div></div>
           <div class="card-body">
@@ -578,7 +427,6 @@
           </div>
           <div class="card-arrow">→</div>
         </div>
-
         <div class="project-card" onclick="goToProject(4)">
           <div class="card-thumb"><div class="card-thumb-inner">□</div></div>
           <div class="card-body">
@@ -588,28 +436,22 @@
           </div>
           <div class="card-arrow">→</div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- ── PROJECTS ──────────────────────────────────────────── -->
+  <!-- ══════ PROJECTS LIST ══════ -->
   <div id="projects" class="page">
-    <div class="projects-header">
-      <h1>Projects</h1>
-    </div>
+    <div class="projects-header"><h1>Projects</h1></div>
 
     <div class="project-slide" id="project-0">
       <div class="slide-visual">◈</div>
       <div class="slide-content">
         <div class="slide-num">01 / 05</div>
         <div class="slide-title">Brand Identity System</div>
-        <div class="slide-tag-row">
-          <span class="slide-tag">Product Design</span>
-          <span class="slide-tag">Branding</span>
-        </div>
-        <p class="slide-desc">A complete visual identity for a Series A fintech startup — logo suite, colour palette, type system, icon library, and a component library in Figma ready for engineering handoff. The brand needed to feel trustworthy without being corporate, and approachable without being playful.</p>
-        <a href="#" class="slide-link">View case study →</a>
+        <div class="slide-tag-row"><span class="slide-tag">Product Design</span><span class="slide-tag">Branding</span></div>
+        <p class="slide-desc">A complete visual identity for a Series A fintech startup — logo suite, colour palette, type system, icon library, and a Figma component library ready for engineering handoff.</p>
+        <a class="slide-link" onclick="showDetail(0)">View case study →</a>
       </div>
     </div>
 
@@ -618,12 +460,9 @@
       <div class="slide-content">
         <div class="slide-num">02 / 05</div>
         <div class="slide-title">E-commerce Redesign</div>
-        <div class="slide-tag-row">
-          <span class="slide-tag">Web Development</span>
-          <span class="slide-tag">UI Design</span>
-        </div>
-        <p class="slide-desc">End-to-end redesign of an artisan goods marketplace, focusing on product discovery, checkout friction, and seller credibility signals. Resulted in a 22% increase in average order value during A/B testing.</p>
-        <a href="#" class="slide-link">View case study →</a>
+        <div class="slide-tag-row"><span class="slide-tag">Web Development</span><span class="slide-tag">UI Design</span></div>
+        <p class="slide-desc">End-to-end redesign of an artisan goods marketplace, focusing on product discovery, checkout friction, and seller credibility signals.</p>
+        <a class="slide-link" onclick="showDetail(1)">View case study →</a>
       </div>
     </div>
 
@@ -632,13 +471,9 @@
       <div class="slide-content">
         <div class="slide-num">03 / 05</div>
         <div class="slide-title">Interactive Data Story</div>
-        <div class="slide-tag-row">
-          <span class="slide-tag">Motion</span>
-          <span class="slide-tag">Data Viz</span>
-          <span class="slide-tag">3D</span>
-        </div>
-        <p class="slide-desc">A scroll-driven data narrative exploring urban heat islands across South Asian cities. Built with D3.js for charts and Three.js for the 3D globe, running entirely in the browser at 60fps.</p>
-        <a href="#" class="slide-link">View live project →</a>
+        <div class="slide-tag-row"><span class="slide-tag">Motion</span><span class="slide-tag">Data Viz</span><span class="slide-tag">3D</span></div>
+        <p class="slide-desc">A scroll-driven data narrative exploring urban heat islands across South Asian cities. Built with D3.js and Three.js, running in the browser at 60fps.</p>
+        <a class="slide-link" onclick="showDetail(2)">View case study →</a>
       </div>
     </div>
 
@@ -647,12 +482,9 @@
       <div class="slide-content">
         <div class="slide-num">04 / 05</div>
         <div class="slide-title">App Onboarding Flow</div>
-        <div class="slide-tag-row">
-          <span class="slide-tag">UX Research</span>
-          <span class="slide-tag">Prototyping</span>
-        </div>
-        <p class="slide-desc">Six rounds of usability testing with 42 participants to identify where first-time users dropped off. Redesigned progressive disclosure model cut drop-off by 38% and improved day-7 retention significantly.</p>
-        <a href="#" class="slide-link">View case study →</a>
+        <div class="slide-tag-row"><span class="slide-tag">UX Research</span><span class="slide-tag">Prototyping</span></div>
+        <p class="slide-desc">Six rounds of usability testing with 42 participants to identify where first-time users dropped off. Redesigned disclosure model cut drop-off by 38%.</p>
+        <a class="slide-link" onclick="showDetail(3)">View case study →</a>
       </div>
     </div>
 
@@ -661,17 +493,215 @@
       <div class="slide-content">
         <div class="slide-num">05 / 05</div>
         <div class="slide-title">Editorial Layout System</div>
-        <div class="slide-tag-row">
-          <span class="slide-tag">Typography</span>
-          <span class="slide-tag">Design Systems</span>
-        </div>
-        <p class="slide-desc">A modular twelve-column grid, a bespoke type scale, and a library of reusable editorial components for a long-form digital magazine. Designed to accommodate short news items and 10,000-word features with equal elegance.</p>
-        <a href="#" class="slide-link">View case study →</a>
+        <div class="slide-tag-row"><span class="slide-tag">Typography</span><span class="slide-tag">Design Systems</span></div>
+        <p class="slide-desc">A modular twelve-column grid, a bespoke type scale, and reusable editorial components for a long-form digital magazine.</p>
+        <a class="slide-link" onclick="showDetail(4)">View case study →</a>
       </div>
     </div>
   </div>
 
-  <!-- ── ABOUT ─────────────────────────────────────────────── -->
+  <!-- ══════ DETAIL 0 ══════ -->
+  <div id="detail-0" class="page">
+    <a class="detail-back" onclick="backToProjects(0)">← All Projects</a>
+    <div class="detail-top">
+      <div class="detail-intro">
+        <div class="detail-title">Brand Identity System</div>
+        <div class="detail-subtitle">An exploration in visual identity and brand strategy.</div>
+        <div class="detail-tag-row">
+          <span class="detail-tag">Product Design</span>
+          <span class="detail-tag">Branding</span>
+        </div>
+        <div class="detail-description">
+          <p>A complete visual identity for a Series A fintech startup — logo suite, colour palette, type system, icon library, and a component library in Figma ready for engineering handoff. The brand needed to feel trustworthy without being corporate, and approachable without being playful.</p>
+          <p>The process began with competitive auditing across the fintech landscape, identifying visual patterns to subvert. The resulting mark is a geometric form that references both data and direction, rendered in a palette that reads as confident and calm.</p>
+          <p>The type system pairs a geometric sans for headlines with a humanist serif for body copy — an unusual choice in this category that creates immediate differentiation.</p>
+        </div>
+      </div>
+      <div class="detail-hero-img">
+        <!-- Replace: <img src="images/project1-hero.jpg" alt="Brand Identity System"> -->
+        <div class="detail-hero-placeholder">◈</div>
+      </div>
+    </div>
+    <div class="detail-meta">
+      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">2024</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">Lead Designer</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">Figma, Illustrator</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value"><a href="#">View live ↗</a></div></div>
+    </div>
+    <div class="detail-gallery">
+      <div class="detail-gallery-item">
+        <!-- Replace: <img src="images/project1-img1.jpg" alt=""> -->
+        <div class="detail-gallery-placeholder">◈</div>
+      </div>
+      <div class="detail-gallery-item">
+        <!-- Replace: <img src="images/project1-img2.jpg" alt=""> -->
+        <div class="detail-gallery-placeholder">◈</div>
+      </div>
+      <div class="detail-gallery-item">
+        <!-- Replace: <img src="images/project1-img3.jpg" alt=""> -->
+        <div class="detail-gallery-placeholder">◈</div>
+      </div>
+    </div>
+    <div class="detail-next" onclick="showDetail(1)">
+      <div><div class="detail-next-label">Next Project</div><div class="detail-next-title">E-commerce Redesign</div></div>
+      <div class="detail-next-arrow">→</div>
+    </div>
+  </div>
+
+  <!-- ══════ DETAIL 1 ══════ -->
+  <div id="detail-1" class="page">
+    <a class="detail-back" onclick="backToProjects(1)">← All Projects</a>
+    <div class="detail-top">
+      <div class="detail-intro">
+        <div class="detail-title">E-commerce Redesign</div>
+        <div class="detail-subtitle">Conversion-focused UI overhaul for an artisan marketplace.</div>
+        <div class="detail-tag-row">
+          <span class="detail-tag">Web Development</span>
+          <span class="detail-tag">UI Design</span>
+        </div>
+        <div class="detail-description">
+          <p>End-to-end redesign of an artisan goods marketplace, focusing on product discovery, checkout friction, and seller credibility signals. Resulted in a 22% increase in average order value during A/B testing.</p>
+          <p>The core insight from user interviews: buyers didn't trust the platform, they trusted the sellers. The redesign made individual maker stories more prominent, brought craft provenance forward, and reduced the platform's visual footprint in favour of the products themselves.</p>
+          <p>Checkout was simplified from seven steps to three, with persistent progress indicators and trust signals placed at key drop-off points.</p>
+        </div>
+      </div>
+      <div class="detail-hero-img">
+        <!-- Replace: <img src="images/project2-hero.jpg" alt="E-commerce Redesign"> -->
+        <div class="detail-hero-placeholder">◇</div>
+      </div>
+    </div>
+    <div class="detail-meta">
+      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">2024</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">UX / UI Designer</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">Figma, Framer</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value"><a href="#">View live ↗</a></div></div>
+    </div>
+    <div class="detail-gallery">
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">◇</div></div>
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">◇</div></div>
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">◇</div></div>
+    </div>
+    <div class="detail-next" onclick="showDetail(2)">
+      <div><div class="detail-next-label">Next Project</div><div class="detail-next-title">Interactive Data Story</div></div>
+      <div class="detail-next-arrow">→</div>
+    </div>
+  </div>
+
+  <!-- ══════ DETAIL 2 ══════ -->
+  <div id="detail-2" class="page">
+    <a class="detail-back" onclick="backToProjects(2)">← All Projects</a>
+    <div class="detail-top">
+      <div class="detail-intro">
+        <div class="detail-title">Interactive Data Story</div>
+        <div class="detail-subtitle">Scroll-driven narrative built with D3.js and WebGL.</div>
+        <div class="detail-tag-row">
+          <span class="detail-tag">Motion</span><span class="detail-tag">Data Viz</span><span class="detail-tag">3D</span>
+        </div>
+        <div class="detail-description">
+          <p>A scroll-driven data narrative exploring urban heat islands across South Asian cities. Built with D3.js for charts and Three.js for the 3D globe, running entirely in the browser at 60fps.</p>
+          <p>The project began with 40 years of temperature records across 12 cities. The challenge was making the data emotionally legible — not just accurate. Each scroll trigger reveals a new layer of the story, moving from macro climate patterns down to street-level impact.</p>
+          <p>The 3D globe allows users to rotate and explore data points spatially, giving the audience agency over how they navigate the information.</p>
+        </div>
+      </div>
+      <div class="detail-hero-img">
+        <!-- Replace: <img src="images/project3-hero.jpg" alt="Interactive Data Story"> -->
+        <div class="detail-hero-placeholder">△</div>
+      </div>
+    </div>
+    <div class="detail-meta">
+      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">2023</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">Designer & Developer</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">D3.js, Three.js</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value"><a href="#">View live ↗</a></div></div>
+    </div>
+    <div class="detail-gallery">
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">△</div></div>
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">△</div></div>
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">△</div></div>
+    </div>
+    <div class="detail-next" onclick="showDetail(3)">
+      <div><div class="detail-next-label">Next Project</div><div class="detail-next-title">App Onboarding Flow</div></div>
+      <div class="detail-next-arrow">→</div>
+    </div>
+  </div>
+
+  <!-- ══════ DETAIL 3 ══════ -->
+  <div id="detail-3" class="page">
+    <a class="detail-back" onclick="backToProjects(3)">← All Projects</a>
+    <div class="detail-top">
+      <div class="detail-intro">
+        <div class="detail-title">App Onboarding Flow</div>
+        <div class="detail-subtitle">Research-led redesign that cut drop-off by 38%.</div>
+        <div class="detail-tag-row">
+          <span class="detail-tag">UX Research</span><span class="detail-tag">Prototyping</span>
+        </div>
+        <div class="detail-description">
+          <p>Six rounds of usability testing with 42 participants to identify where first-time users dropped off. Redesigned progressive disclosure model cut drop-off by 38% and improved day-7 retention significantly.</p>
+          <p>The original onboarding asked users for 14 pieces of information before they could use the product. After mapping the actual decision points, we restructured into three stages: a two-step hook, a deferred permission ask, and a contextual setup flow triggered by first use.</p>
+          <p>Users reported feeling less pressured, more curious, and more confident in what the product would do for them.</p>
+        </div>
+      </div>
+      <div class="detail-hero-img">
+        <!-- Replace: <img src="images/project4-hero.jpg" alt="App Onboarding Flow"> -->
+        <div class="detail-hero-placeholder">○</div>
+      </div>
+    </div>
+    <div class="detail-meta">
+      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">2023</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">UX Researcher</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">Figma, Maze</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value"><a href="#">View prototype ↗</a></div></div>
+    </div>
+    <div class="detail-gallery">
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">○</div></div>
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">○</div></div>
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">○</div></div>
+    </div>
+    <div class="detail-next" onclick="showDetail(4)">
+      <div><div class="detail-next-label">Next Project</div><div class="detail-next-title">Editorial Layout System</div></div>
+      <div class="detail-next-arrow">→</div>
+    </div>
+  </div>
+
+  <!-- ══════ DETAIL 4 ══════ -->
+  <div id="detail-4" class="page">
+    <a class="detail-back" onclick="backToProjects(4)">← All Projects</a>
+    <div class="detail-top">
+      <div class="detail-intro">
+        <div class="detail-title">Editorial Layout System</div>
+        <div class="detail-subtitle">Modular grid and type system for a long-form digital publication.</div>
+        <div class="detail-tag-row">
+          <span class="detail-tag">Typography</span><span class="detail-tag">Design Systems</span>
+        </div>
+        <div class="detail-description">
+          <p>A modular twelve-column grid, a bespoke type scale, and a library of reusable editorial components for a long-form digital magazine. Designed to accommodate short news items and 10,000-word features with equal elegance.</p>
+          <p>The typographic challenge was creating a scale that worked across five different article formats — briefs, analysis, longform features, interviews, and photo essays — each with distinct reading rhythms.</p>
+          <p>The component library was built in Figma with auto-layout and variables, enabling the editorial team to compose pages without designer involvement while maintaining visual consistency.</p>
+        </div>
+      </div>
+      <div class="detail-hero-img">
+        <!-- Replace: <img src="images/project5-hero.jpg" alt="Editorial Layout System"> -->
+        <div class="detail-hero-placeholder">□</div>
+      </div>
+    </div>
+    <div class="detail-meta">
+      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">2023</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">Design Systems Lead</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">Figma, Storybook</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value"><a href="#">View publication ↗</a></div></div>
+    </div>
+    <div class="detail-gallery">
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">□</div></div>
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">□</div></div>
+      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">□</div></div>
+    </div>
+    <div class="detail-next" onclick="showDetail(0)">
+      <div><div class="detail-next-label">Back to First</div><div class="detail-next-title">Brand Identity System</div></div>
+      <div class="detail-next-arrow">→</div>
+    </div>
+  </div>
+
+  <!-- ══════ ABOUT ══════ -->
   <div id="about" class="page">
     <div class="about-inner">
       <h1>About Me</h1>
@@ -684,65 +714,44 @@
         <div class="skill-group">
           <h3>Design</h3>
           <ul>
-            <li>UI / UX Design</li>
-            <li>Design Systems</li>
-            <li>Visual Identity</li>
-            <li>Motion Design</li>
-            <li>Typography</li>
+            <li>UI / UX Design</li><li>Design Systems</li><li>Visual Identity</li>
+            <li>Motion Design</li><li>Typography</li>
           </ul>
         </div>
         <div class="skill-group">
           <h3>Development</h3>
           <ul>
-            <li>HTML / CSS / JS</li>
-            <li>React</li>
-            <li>Figma</li>
-            <li>Three.js / WebGL</li>
-            <li>D3.js</li>
+            <li>HTML / CSS / JS</li><li>React</li><li>Figma</li>
+            <li>Three.js / WebGL</li><li>D3.js</li>
           </ul>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── CONTACT ───────────────────────────────────────────── -->
+  <!-- ══════ CONTACT ══════ -->
   <div id="contact" class="page">
     <div class="contact-inner">
       <h1>Get in touch.</h1>
       <p class="sub">Whether it's a project, a collaboration, or just a conversation — I'd love to hear from you.</p>
-
       <div class="contact-form">
         <label>Name</label>
         <input type="text" placeholder="Your name" />
-
         <label>Email</label>
         <input type="email" placeholder="your@email.com" />
-
         <label>Message</label>
         <textarea placeholder="Tell me what you're working on…"></textarea>
-
         <button type="button">Send message</button>
       </div>
-
       <div class="contact-links">
-        <a href="#" class="contact-link">
-          <span>LinkedIn</span>
-          <span>↗</span>
-        </a>
-        <a href="#" class="contact-link">
-          <span>GitHub</span>
-          <span>↗</span>
-        </a>
-        <a href="mailto:hello@yourname.com" class="contact-link">
-          <span>hello@yourname.com</span>
-          <span>↗</span>
-        </a>
+        <a href="#" class="contact-link"><span>LinkedIn</span><span>↗</span></a>
+        <a href="#" class="contact-link"><span>GitHub</span><span>↗</span></a>
+        <a href="mailto:hello@yourname.com" class="contact-link"><span>hello@yourname.com</span><span>↗</span></a>
       </div>
     </div>
   </div>
 
   <script>
-    // ── Page routing ──────────────────────────────────────────
     function showPage(id) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById(id).classList.add('active');
@@ -752,7 +761,6 @@
       window.scrollTo(0, 0);
     }
 
-    // ── Navigate from home card → projects page + scroll to slide ──
     function goToProject(index) {
       showPage('projects');
       setTimeout(() => {
@@ -761,7 +769,19 @@
       }, 50);
     }
 
-    // ── Drag-to-scroll on the home horizontal row ─────────────
+    function showDetail(index) {
+      showPage('detail-' + index);
+    }
+
+    function backToProjects(index) {
+      showPage('projects');
+      setTimeout(() => {
+        const slide = document.getElementById('project-' + index);
+        if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+
+    // Drag-to-scroll
     const scroll = document.getElementById('homeScroll');
     let isDragging = false, startX, scrollLeft;
 
@@ -772,32 +792,22 @@
       scroll.style.userSelect = 'none';
     });
 
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      scroll.style.userSelect = '';
-    });
+    document.addEventListener('mouseup', () => { isDragging = false; scroll.style.userSelect = ''; });
 
     document.addEventListener('mousemove', e => {
       if (!isDragging) return;
-      const x = e.pageX - scroll.offsetLeft;
-      const walk = (x - startX) * 1.4;
-      scroll.scrollLeft = scrollLeft - walk;
+      scroll.scrollLeft = scrollLeft - (e.pageX - scroll.offsetLeft - startX) * 1.4;
     });
 
-    // ── Prevent card click when finishing a drag ───────────────
     scroll.addEventListener('click', e => {
       if (Math.abs(scroll.scrollLeft - scrollLeft) > 4) e.stopPropagation();
     }, true);
 
-    // ── Header link clicks ────────────────────────────────────
     document.querySelectorAll('nav a').forEach(a => {
-      a.addEventListener('click', e => e.preventDefault());
+      a.addEventListener('click', e => { e.preventDefault(); showPage(a.dataset.page); });
     });
 
-    document.querySelector('.logo').addEventListener('click', e => {
-      e.preventDefault();
-      showPage('home');
-    });
+    document.getElementById('logoLink').addEventListener('click', e => { e.preventDefault(); showPage('home'); });
   </script>
 </body>
 </html>
