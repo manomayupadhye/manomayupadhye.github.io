@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  ALL YOUR CONTENT LIVES IN THE <script> BLOCK BELOW.        ║
+  ║  Scroll to the bottom and edit SITE_CONFIG — that's it.     ║
+  ╚══════════════════════════════════════════════════════════════╝
+  -->
+
+  <!-- Title and favicon are set by JS from SITE_CONFIG -->
   <title>Portfolio</title>
+  <link id="favicon" rel="icon" type="image/png" href="">
+
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -19,18 +30,14 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 26px;
-      min-height: 100vh;
+      background: var(--bg); color: var(--text);
+      font-family: var(--font-body); font-size: 26px; min-height: 100vh;
     }
 
     /* ─── HEADER ─────────────────────────────────────────────── */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--header-bg);
-      border-bottom: 1px solid var(--border);
+      background: var(--header-bg); border-bottom: 1px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 56px; height: 72px;
     }
@@ -38,7 +45,10 @@
     .logo {
       font-family: var(--font-header); font-size: 36px; font-weight: 400;
       letter-spacing: -0.5px; color: var(--text); text-decoration: none;
+      display: flex; align-items: center;
     }
+
+    .logo img { height: 36px; width: auto; }
 
     nav { display: flex; gap: 48px; align-items: center; }
 
@@ -101,27 +111,17 @@
 
     .card-thumb { width: 100%; height: 240px; background: var(--border); overflow: hidden; }
     .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
     .card-thumb-inner {
       width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
       font-family: var(--font-header); font-size: 72px; opacity: 0.15;
     }
 
     .card-body { padding: 24px 24px 20px; }
-
-    .card-tag {
-      font-family: var(--font-header); font-size: 11px; letter-spacing: 0.14em;
-      text-transform: uppercase; opacity: 0.4; margin-bottom: 10px;
-    }
-
+    .card-tag { font-family: var(--font-header); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.4; margin-bottom: 10px; }
     .card-title { font-family: var(--font-header); font-size: 22px; font-weight: 600; margin-bottom: 10px; line-height: 1.2; }
     .card-desc { font-size: 16px; opacity: 0.55; line-height: 1.5; }
 
-    .card-arrow {
-      position: absolute; bottom: 20px; right: 20px; font-size: 20px;
-      opacity: 0.3; transition: opacity 0.2s, transform 0.2s;
-    }
-
+    .card-arrow { position: absolute; bottom: 20px; right: 20px; font-size: 20px; opacity: 0.3; transition: opacity 0.2s, transform 0.2s; }
     .project-card:hover .card-arrow { opacity: 0.8; transform: translateX(4px); }
 
     /* ─── PROJECTS LIST ──────────────────────────────────────── */
@@ -146,20 +146,10 @@
 
     .slide-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    .slide-num {
-      font-family: var(--font-header); font-size: 12px; letter-spacing: 0.16em;
-      text-transform: uppercase; opacity: 0.35; margin-bottom: 20px;
-    }
-
+    .slide-num { font-family: var(--font-header); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.35; margin-bottom: 20px; }
     .slide-title { font-family: var(--font-header); font-size: 36px; font-weight: 600; margin-bottom: 16px; line-height: 1.15; }
-
     .slide-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-
-    .slide-tag {
-      font-family: var(--font-header); font-size: 12px; letter-spacing: 0.1em;
-      text-transform: uppercase; border: 1px solid var(--border); padding: 4px 12px; border-radius: 2px;
-    }
-
+    .slide-tag { font-family: var(--font-header); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--border); padding: 4px 12px; border-radius: 2px; }
     .slide-desc { font-size: 20px; line-height: 1.65; opacity: 0.7; margin-bottom: 32px; }
 
     .slide-link {
@@ -181,161 +171,77 @@
 
     .detail-back:hover { opacity: 0.9; }
 
-    /* Title left / hero image right */
     .detail-top {
       display: grid; grid-template-columns: 1fr 1fr;
       border-bottom: 1px solid var(--border); min-height: 72vh;
     }
 
-    .detail-intro {
-      padding: 48px 56px 64px; border-right: 1px solid var(--border);
-      display: flex; flex-direction: column;
-    }
+    .detail-intro { padding: 48px 56px 64px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
 
-    .detail-title {
-      font-family: var(--font-header); font-size: 36px; font-weight: 600;
-      line-height: 1.1; margin-bottom: 16px;
-    }
-
-    .detail-subtitle {
-      font-family: var(--font-header); font-size: 20px; font-weight: 400;
-      opacity: 0.5; margin-bottom: 28px; line-height: 1.4;
-    }
-
+    .detail-title { font-family: var(--font-header); font-size: 36px; font-weight: 600; line-height: 1.1; margin-bottom: 16px; }
+    .detail-subtitle { font-family: var(--font-header); font-size: 20px; font-weight: 400; opacity: 0.5; margin-bottom: 28px; line-height: 1.4; }
     .detail-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
-
-    .detail-tag {
-      font-family: var(--font-header); font-size: 12px; letter-spacing: 0.1em;
-      text-transform: uppercase; border: 1px solid var(--border); padding: 5px 14px; border-radius: 2px;
-    }
-
+    .detail-tag { font-family: var(--font-header); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--border); padding: 5px 14px; border-radius: 2px; }
     .detail-description { font-size: 20px; line-height: 1.8; opacity: 0.7; }
     .detail-description p { margin-bottom: 20px; }
     .detail-description p:last-child { margin-bottom: 0; }
 
-    .detail-hero-img { background: var(--border); overflow: hidden; position: relative; }
+    .detail-hero-img { background: var(--border); overflow: hidden; }
     .detail-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .detail-hero-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--font-header); font-size: 120px; opacity: 0.1; }
 
-    .detail-hero-placeholder {
-      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-header); font-size: 120px; opacity: 0.1;
-    }
-
-    /* Meta row */
     .detail-meta { display: flex; border-bottom: 1px solid var(--border); }
-
     .detail-meta-item { flex: 1; padding: 36px 40px; border-right: 1px solid var(--border); }
     .detail-meta-item:last-child { border-right: none; }
-
-    .detail-meta-label {
-      font-family: var(--font-header); font-size: 11px; letter-spacing: 0.14em;
-      text-transform: uppercase; opacity: 0.4; margin-bottom: 10px;
-    }
-
+    .detail-meta-label { font-family: var(--font-header); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.4; margin-bottom: 10px; }
     .detail-meta-value { font-family: var(--font-header); font-size: 18px; }
-
-    .detail-meta-value a {
-      color: var(--text); text-decoration: none;
-      border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: border-color 0.2s;
-    }
-
+    .detail-meta-value a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: border-color 0.2s; }
     .detail-meta-value a:hover { border-color: var(--text); }
 
-    /* Gallery row */
     .detail-gallery { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--border); }
-
-    .detail-gallery-item {
-      aspect-ratio: 4/3; background: var(--header-bg);
-      border-right: 1px solid var(--border); overflow: hidden;
-    }
-
+    .detail-gallery-item { aspect-ratio: 4/3; background: var(--header-bg); border-right: 1px solid var(--border); overflow: hidden; }
     .detail-gallery-item:last-child { border-right: none; }
     .detail-gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .detail-gallery-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--font-header); font-size: 48px; opacity: 0.1; }
 
-    .detail-gallery-placeholder {
-      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-header); font-size: 48px; opacity: 0.1;
-    }
-
-    /* Next project */
-    .detail-next {
-      padding: 56px; display: flex; justify-content: space-between;
-      align-items: center; cursor: pointer; transition: background 0.2s;
-    }
-
+    .detail-next { padding: 56px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.2s; }
     .detail-next:hover { background: var(--header-bg); }
-
-    .detail-next-label {
-      font-family: var(--font-header); font-size: 13px; letter-spacing: 0.14em;
-      text-transform: uppercase; opacity: 0.4; margin-bottom: 8px;
-    }
-
+    .detail-next-label { font-family: var(--font-header); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.4; margin-bottom: 8px; }
     .detail-next-title { font-family: var(--font-header); font-size: 28px; font-weight: 400; }
-
     .detail-next-arrow { font-size: 32px; opacity: 0.3; transition: transform 0.2s, opacity 0.2s; }
     .detail-next:hover .detail-next-arrow { transform: translateX(8px); opacity: 0.8; }
 
     /* ─── ABOUT ──────────────────────────────────────────────── */
-    .about-inner { max-width: 780px; margin: 0 auto; padding: 80px 56px; }
+    .about-inner { padding: 80px 56px; }
 
     .about-inner h1 { font-family: var(--font-header); font-size: 36px; font-weight: 400; margin-bottom: 48px; }
 
+    .about-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: start; }
+
+    .about-photo-col img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; border: 1px solid var(--border); }
+    .about-photo-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--header-bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--font-header); font-size: 48px; opacity: 0.15; }
+
     .about-body p { font-size: 22px; line-height: 1.75; opacity: 0.75; margin-bottom: 28px; }
 
-    .skills-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-      margin-top: 56px; padding-top: 48px; border-top: 1px solid var(--border);
-    }
-
-    .skill-group h3 {
-      font-family: var(--font-header); font-size: 13px; letter-spacing: 0.14em;
-      text-transform: uppercase; opacity: 0.4; margin-bottom: 16px;
-    }
-
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border); }
+    .skill-group h3 { font-family: var(--font-header); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.4; margin-bottom: 16px; }
     .skill-group ul { list-style: none; }
     .skill-group li { font-size: 20px; opacity: 0.7; padding: 6px 0; border-bottom: 1px solid var(--border); }
 
     /* ─── CONTACT ────────────────────────────────────────────── */
     .contact-inner { max-width: 640px; margin: 0 auto; padding: 80px 56px; }
-
     .contact-inner h1 { font-family: var(--font-header); font-size: 36px; font-weight: 400; margin-bottom: 16px; }
-
     .contact-inner .sub { font-size: 20px; opacity: 0.55; margin-bottom: 56px; line-height: 1.6; }
 
-    .contact-form label {
-      display: block; font-family: var(--font-header); font-size: 13px;
-      letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-bottom: 8px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      display: block; width: 100%; background: transparent; border: none;
-      border-bottom: 1px solid var(--border); padding: 12px 0;
-      font-family: var(--font-body); font-size: 20px; color: var(--text);
-      outline: none; margin-bottom: 36px; transition: border-color 0.2s; resize: none;
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus { border-color: var(--text); }
-
+    .contact-form label { display: block; font-family: var(--font-header); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-bottom: 8px; }
+    .contact-form input, .contact-form textarea { display: block; width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border); padding: 12px 0; font-family: var(--font-body); font-size: 20px; color: var(--text); outline: none; margin-bottom: 36px; transition: border-color 0.2s; resize: none; }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--text); }
     .contact-form textarea { min-height: 120px; }
-
-    .contact-form button {
-      font-family: var(--font-header); font-size: 16px; letter-spacing: 0.08em;
-      text-transform: uppercase; background: var(--text); color: var(--bg);
-      border: none; padding: 16px 40px; cursor: pointer; transition: opacity 0.2s;
-    }
-
+    .contact-form button { font-family: var(--font-header); font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--text); color: var(--bg); border: none; padding: 16px 40px; cursor: pointer; transition: opacity 0.2s; }
     .contact-form button:hover { opacity: 0.75; }
 
     .contact-links { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border); }
-
-    .contact-link {
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 20px; text-decoration: none; color: var(--text);
-      opacity: 0.6; padding: 16px 0; border-bottom: 1px solid var(--border); transition: opacity 0.2s;
-    }
-
+    .contact-link { display: flex; justify-content: space-between; align-items: center; font-size: 20px; text-decoration: none; color: var(--text); opacity: 0.6; padding: 16px 0; border-bottom: 1px solid var(--border); transition: opacity 0.2s; }
     .contact-link:hover { opacity: 1; }
 
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
@@ -347,6 +253,8 @@
       .detail-gallery-item:last-child { display: none; }
       .detail-meta { flex-wrap: wrap; }
       .detail-meta-item { flex: 0 0 50%; border-bottom: 1px solid var(--border); }
+      .about-layout { grid-template-columns: 1fr; }
+      .about-photo-col img, .about-photo-placeholder { aspect-ratio: 4/3; }
     }
 
     @media (max-width: 768px) {
@@ -371,377 +279,375 @@
 </head>
 <body>
 
+  <!-- All HTML is rendered by JavaScript from SITE_CONFIG below -->
+
   <header>
-    <a href="#" onclick="showPage('home')" style="display:flex;align-items:center;">
-  <img src="images/manomay-monogramblack.svg" alt="ManomayMonogramSVG" style="height:50px;width:auto;">
-</a>
-    <nav>
+    <a href="#" id="logoLink" class="logo"></a>
+    <nav id="mainNav">
       <a href="#" data-page="projects">Projects</a>
       <a href="#" data-page="about">About Me</a>
       <a href="#" data-page="contact">Contact</a>
     </nav>
   </header>
 
-  <!-- ══════ HOME ══════ -->
+  <div id="app"></div>
+
+<script>
+/* ================================================================
+   ███████╗██╗████████╗███████╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗
+   ██╔════╝██║╚══██╔══╝██╔════╝    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝
+   ███████╗██║   ██║   █████╗      ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
+   ╚════██║██║   ██║   ██╔══╝      ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
+   ███████║██║   ██║   ███████╗    ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
+   ╚══════╝╚═╝   ╚══╝  ╚══════╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝
+
+   Edit everything below. Nothing else in this file needs to be touched.
+   ================================================================ */
+
+const SITE_CONFIG = {
+
+  /* ── BROWSER TAB ──────────────────────────────────────────────
+     title     : text shown in the browser tab
+     favicon   : path to your favicon image in the images/ folder  */
+  title:   "Manomay Upadhye",
+  favicon: "images/manomay-monogramblack.svg,
+
+  /* ── HEADER LOGO ──────────────────────────────────────────────
+     Use EITHER logoText OR logoImage — not both.
+     logoText  : plain text shown in the header
+     logoImage : path to a logo image file (set logoText to "" to use this) */
+  logoText:  "manomay_monogram-black",
+  logoImage: "images/manomay-monogramblack.svg"
+
+  /* ── HOME PAGE ────────────────────────────────────────────────
+     heroHeading : large heading on the home page
+     heroSubtext : smaller paragraph below the heading            */
+  heroHeading: "Designed with intent,\nDesigned with intention.",
+  heroSubtext:  "A collection of work across product design, digital design and software skills.",
+
+  /* ── ABOUT PAGE ───────────────────────────────────────────────
+     photo       : path to your photo (leave "" for no photo)
+     paragraphs  : array of text paragraphs
+     skills      : array of { heading, items[] } skill groups     */
+  about: {
+    photo: "images/manomay-formal.jpeg"
+    paragraphs: [
+      "I'm an industrial designer and ",
+      "My work tends toward the clean and the quiet, but I know when restraint gives way to something more expressive. I've worked with early-stage startups, agencies, and independently.",
+      "When I'm not designing, I'm usually reading about type, walking around the city looking at signage, or finding new ways to break my own grid systems."
+    ],
+    skills: [
+      {
+        heading: "Design & Manufacturing",
+        items: ["Product Design", "Computer Aided Design", "Computational Fluid Dynamics", "UX Research", "Lean Manufacturing", "Design for Manufacturing"]
+      },
+      {
+        heading: "Software and Skills",
+        items: ["Fusion360 / OnShape ", "ANSYS / SimScale", "Figma", "Affinity Suite", "Rapid Prototyping", "Woodworking"]
+      }
+    ]
+  },
+
+  /* ── CONTACT PAGE ─────────────────────────────────────────────
+     heading : h1 text
+     subtext : paragraph below heading
+     links   : array of { label, url } — shown as clickable rows  */
+  contact: {
+    heading: "Get in touch.",
+    subtext:  "Whether it's a project, a collaboration, or just a conversation — I'd love to hear from you.",
+    links: [
+      { label: "LinkedIn",            url: "https://www.linkedin.com/in/manomayupadhye/" },
+      { label: "Instagram",              url: "https://www.instagram.com/curatedbymanomay" },
+      { label: "manomay.upadhye.edu@gmail.com",  url: "mailto:manomay.upadhye.edu@gmail.com" }
+    ]
+  },
+
+  /* ── PROJECTS ─────────────────────────────────────────────────
+     Each project has:
+       title       : project name (shown everywhere)
+       subtitle    : one-line descriptor (detail page only)
+       tags        : array of tag strings
+       cardDesc    : short description shown on the home scroll card
+       slideDesc   : medium description shown on the projects list page
+       description : array of paragraphs shown on the detail page
+       thumbImg    : card thumbnail  — e.g. "images/project1-thumb.jpg"
+       slideImg    : projects list image — e.g. "images/project1-slide.jpg"
+       heroImg     : large detail page image — e.g. "images/project1-hero.jpg"
+       galleryImgs : array of 3 image paths for the detail gallery row
+                     (use "" for any you don't have yet — shows placeholder)
+       year        : string
+       role        : your role
+       tools       : tools used
+       link        : URL for the "View live" button (use "" to hide it)    */
+  projects: [
+    {
+      title:    "Brand Identity System",
+      subtitle: "An exploration in visual identity and brand strategy.",
+      tags:     ["Product Design", "Branding"],
+      cardDesc:  "A full visual identity for a fintech startup, from logo to design tokens.",
+      slideDesc: "A complete visual identity for a Series A fintech startup — logo suite, colour palette, type system, icon library, and a Figma component library ready for engineering handoff.",
+      description: [
+        "A complete visual identity for a Series A fintech startup — logo suite, colour palette, type system, icon library, and a component library in Figma ready for engineering handoff. The brand needed to feel trustworthy without being corporate, and approachable without being playful.",
+        "The process began with competitive auditing across the fintech landscape, identifying visual patterns to subvert. The resulting mark is a geometric form that references both data and direction, rendered in a palette that reads as confident and calm.",
+        "The type system pairs a geometric sans for headlines with a humanist serif for body copy — an unusual choice in this category that creates immediate differentiation."
+      ],
+      thumbImg:    "",   // e.g. "images/project1-thumb.jpg"
+      slideImg:    "",   // e.g. "images/project1-slide.jpg"
+      heroImg:     "",   // e.g. "images/project1-hero.jpg"
+      galleryImgs: ["", "", ""],
+      year:  "2024",
+      role:  "Lead Designer",
+      tools: "Figma, Illustrator",
+      link:  ""
+    },
+    {
+      title:    "E-commerce Redesign",
+      subtitle: "Conversion-focused UI overhaul for an artisan marketplace.",
+      tags:     ["Web Development", "UI Design"],
+      cardDesc:  "Conversion-focused UI overhaul for an artisan goods marketplace.",
+      slideDesc: "End-to-end redesign of an artisan goods marketplace, focusing on product discovery, checkout friction, and seller credibility signals.",
+      description: [
+        "End-to-end redesign of an artisan goods marketplace, focusing on product discovery, checkout friction, and seller credibility signals. Resulted in a 22% increase in average order value during A/B testing.",
+        "The core insight from user interviews: buyers didn't trust the platform, they trusted the sellers. The redesign made individual maker stories more prominent, brought craft provenance forward, and reduced the platform's visual footprint in favour of the products themselves.",
+        "Checkout was simplified from seven steps to three, with persistent progress indicators and trust signals placed at key drop-off points."
+      ],
+      thumbImg:    "",
+      slideImg:    "",
+      heroImg:     "",
+      galleryImgs: ["", "", ""],
+      year:  "2024",
+      role:  "UX / UI Designer",
+      tools: "Figma, Framer",
+      link:  ""
+    },
+    {
+      title:    "Interactive Data Story",
+      subtitle: "Scroll-driven narrative built with D3.js and WebGL.",
+      tags:     ["Motion", "Data Viz", "3D"],
+      cardDesc:  "Scroll-driven data visualisation built with D3.js and WebGL.",
+      slideDesc: "A scroll-driven data narrative exploring urban heat islands across South Asian cities. Built with D3.js and Three.js, running in the browser at 60fps.",
+      description: [
+        "A scroll-driven data narrative exploring urban heat islands across South Asian cities. Built with D3.js for charts and Three.js for the 3D globe, running entirely in the browser at 60fps.",
+        "The project began with 40 years of temperature records across 12 cities. The challenge was making the data emotionally legible — not just accurate. Each scroll trigger reveals a new layer of the story, moving from macro climate patterns down to street-level impact.",
+        "The 3D globe allows users to rotate and explore data points spatially, giving the audience agency over how they navigate the information."
+      ],
+      thumbImg:    "",
+      slideImg:    "",
+      heroImg:     "",
+      galleryImgs: ["", "", ""],
+      year:  "2023",
+      role:  "Designer & Developer",
+      tools: "D3.js, Three.js",
+      link:  ""
+    },
+    {
+      title:    "App Onboarding Flow",
+      subtitle: "Research-led redesign that cut drop-off by 38%.",
+      tags:     ["UX Research", "Prototyping"],
+      cardDesc:  "Research-led redesign that cut drop-off by 38% in usability testing.",
+      slideDesc: "Six rounds of usability testing with 42 participants to identify where first-time users dropped off. Redesigned disclosure model cut drop-off by 38%.",
+      description: [
+        "Six rounds of usability testing with 42 participants to identify where first-time users dropped off. Redesigned progressive disclosure model cut drop-off by 38% and improved day-7 retention significantly.",
+        "The original onboarding asked users for 14 pieces of information before they could use the product. After mapping the actual decision points, we restructured into three stages: a two-step hook, a deferred permission ask, and a contextual setup flow triggered by first use.",
+        "Users reported feeling less pressured, more curious, and more confident in what the product would do for them."
+      ],
+      thumbImg:    "",
+      slideImg:    "",
+      heroImg:     "",
+      galleryImgs: ["", "", ""],
+      year:  "2023",
+      role:  "UX Researcher",
+      tools: "Figma, Maze",
+      link:  ""
+    },
+    {
+      title:    "Editorial Layout System",
+      subtitle: "Modular grid and type system for a long-form digital publication.",
+      tags:     ["Typography", "Design Systems"],
+      cardDesc:  "Modular grid and type system for a long-form digital publication.",
+      slideDesc: "A modular twelve-column grid, a bespoke type scale, and reusable editorial components for a long-form digital magazine.",
+      description: [
+        "A modular twelve-column grid, a bespoke type scale, and a library of reusable editorial components for a long-form digital magazine. Designed to accommodate short news items and 10,000-word features with equal elegance.",
+        "The typographic challenge was creating a scale that worked across five different article formats — briefs, analysis, longform features, interviews, and photo essays — each with distinct reading rhythms.",
+        "The component library was built in Figma with auto-layout and variables, enabling the editorial team to compose pages without designer involvement while maintaining visual consistency."
+      ],
+      thumbImg:    "",
+      slideImg:    "",
+      heroImg:     "",
+      galleryImgs: ["", "", ""],
+      year:  "2023",
+      role:  "Design Systems Lead",
+      tools: "Figma, Storybook",
+      link:  ""
+    }
+  ]
+};
+
+/* ================================================================
+   RENDERER — no need to edit below this line
+   ================================================================ */
+
+const PLACEHOLDERS = ["◈","◇","△","○","□"];
+
+function img(src, alt, style) {
+  if (!src) return '';
+  return `<img src="${src}" alt="${alt || ''}" ${style ? `style="${style}"` : ''}>`;
+}
+
+function placeholder(symbol, cls) {
+  return `<div class="${cls}">${symbol}</div>`;
+}
+
+function thumbHTML(src, i) {
+  return src
+    ? `<div class="card-thumb">${img(src, '')}</div>`
+    : `<div class="card-thumb"><div class="card-thumb-inner">${PLACEHOLDERS[i]}</div></div>`;
+}
+
+function slideVisualHTML(src, i) {
+  return src
+    ? `<div class="slide-visual">${img(src, '')}</div>`
+    : `<div class="slide-visual">${PLACEHOLDERS[i]}</div>`;
+}
+
+function heroImgHTML(src, i) {
+  return `<div class="detail-hero-img">${src ? img(src, '') : placeholder(PLACEHOLDERS[i], 'detail-hero-placeholder')}</div>`;
+}
+
+function galleryItemHTML(src, i) {
+  return `<div class="detail-gallery-item">${src ? img(src, '') : placeholder(PLACEHOLDERS[i], 'detail-gallery-placeholder')}</div>`;
+}
+
+function renderApp() {
+  const cfg = SITE_CONFIG;
+  const P   = cfg.projects;
+  const total = P.length;
+
+  // ── Head ──────────────────────────────────────────────────
+  document.title = cfg.title;
+  document.getElementById('favicon').href = cfg.favicon;
+
+  // ── Logo ──────────────────────────────────────────────────
+  const logoEl = document.getElementById('logoLink');
+  if (cfg.logoImage) {
+    logoEl.innerHTML = `<img src="${cfg.logoImage}" alt="${cfg.logoText || 'Logo'}">`;
+  } else {
+    logoEl.textContent = cfg.logoText;
+  }
+
+  // ── Build HTML ────────────────────────────────────────────
+  let html = '';
+
+  /* HOME */
+  html += `
   <div id="home" class="page active">
     <div class="hero">
-      <h1>Designed with integrity.<br>Designed with intention.</h1>
-      <p>A collection of work across product design, web development, and .</p>
+      <h1>${cfg.heroHeading.replace('\n','<br>')}</h1>
+      <p>${cfg.heroSubtext}</p>
     </div>
     <div class="section-label">Selected Projects</div>
     <div class="projects-scroll-wrap">
       <div class="projects-scroll" id="homeScroll">
-        <div class="project-card" onclick="goToProject(0)">
-         <div class="card-thumb">
-  <img src="images/project1-bajaj_smokechamp-render-frontleft.png" alt="Bajaj SmokeChamp - Render Thumbnail"
-       style="width:100%;height:100%;object-fit:cover;display:block;">
-</div>
+        ${P.map((p, i) => `
+        <div class="project-card" onclick="goToProject(${i})">
+          ${thumbHTML(p.thumbImg, i)}
           <div class="card-body">
-            <div class="card-tag">Product Design</div>
-            <div class="card-title">Bajaj Smoke Champ</div>
-            <div class="card-desc">An affordable and easy-to-use smoke detection solution tailored for Indian households.</div>
+            <div class="card-tag">${p.tags[0]}</div>
+            <div class="card-title">${p.title}</div>
+            <div class="card-desc">${p.cardDesc}</div>
           </div>
           <div class="card-arrow">→</div>
-        </div>
-        <div class="project-card" onclick="goToProject(1)">
-          <div class="card-thumb"><div class="card-thumb-inner">◇</div></div>
-          <div class="card-body">
-            <div class="card-tag">Furniture Design Sprint</div>
-            <div class="card-title">Banyan Bloom</div>
-            <div class="card-desc">Conversion-focused UI overhaul for an artisan goods marketplace.</div>
-          </div>
-          <div class="card-arrow">→</div>
-        </div>
-        <div class="project-card" onclick="goToProject(2)">
-          <div class="card-thumb"><div class="card-thumb-inner">△</div></div>
-          <div class="card-body">
-            <div class="card-tag">Product Design</div>
-            <div class="card-title">Interactive Healtcare Kiosk</div>
-            <div class="card-desc">Design an intuitive, adaptive, and human-centered phygital wayfinding system for the healthcare space</div>
-          </div>
-          <div class="card-arrow">→</div>
-        </div>
-        <div class="project-card" onclick="goToProject(3)">
-          <div class="card-thumb"><div class="card-thumb-inner">○</div></div>
-          <div class="card-body">
-            <div class="card-tag">UX Research</div>
-            <div class="card-title">App Onboarding Flow</div>
-            <div class="card-desc">Research-led redesign that cut drop-off by 38% in usability testing.</div>
-          </div>
-          <div class="card-arrow">→</div>
-        </div>
-        <div class="project-card" onclick="goToProject(4)">
-          <div class="card-thumb"><div class="card-thumb-inner">□</div></div>
-          <div class="card-body">
-            <div class="card-tag">Typography</div>
-            <div class="card-title">Editorial Layout System</div>
-            <div class="card-desc">Modular grid and type system for a long-form digital publication.</div>
-          </div>
-          <div class="card-arrow">→</div>
-        </div>
+        </div>`).join('')}
       </div>
     </div>
-  </div>
+  </div>`;
 
-  <!-- ══════ PROJECTS LIST ══════ -->
+  /* PROJECTS LIST */
+  html += `
   <div id="projects" class="page">
     <div class="projects-header"><h1>Projects</h1></div>
-
-    <div class="project-slide" id="project-0">
-     <img src="project1-bajaj_smokechamp-render-frontleft.png" alt="Bajaj SmokeChamp Render Thumbnail"
-     style="width:100%;aspect-ratio:4/3;object-fit:cover;
-            border:1px solid var(--border);border-radius:4px;">
+    ${P.map((p, i) => `
+    <div class="project-slide" id="project-${i}">
+      ${slideVisualHTML(p.slideImg, i)}
       <div class="slide-content">
-        <div class="slide-num">01 / 05</div>
-        <div class="slide-title">Bajaj Smoke Champ</div>
-        <div class="slide-tag-row"><span class="slide-tag">Product Design</span><span class="slide-tag">New Product Development</span></div>
-        <p class="slide-desc">Design of an affordable, reliable, and easy-to-use smoke detection solution tailored for Indian households.</p>
-        <a class="slide-link" onclick="showDetail(0)">View case study →</a>
+        <div class="slide-num">${String(i+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}</div>
+        <div class="slide-title">${p.title}</div>
+        <div class="slide-tag-row">${p.tags.map(t=>`<span class="slide-tag">${t}</span>`).join('')}</div>
+        <p class="slide-desc">${p.slideDesc}</p>
+        <a class="slide-link" onclick="showDetail(${i})">View case study →</a>
       </div>
-    </div>
+    </div>`).join('')}
+  </div>`;
 
-    <div class="project-slide" id="project-1">
-      <div class="slide-visual">◇</div>
-      <div class="slide-content">
-        <div class="slide-num">02 / 05</div>
-        <div class="slide-title">E-commerce Redesign</div>
-        <div class="slide-tag-row"><span class="slide-tag">Web Development</span><span class="slide-tag">UI Design</span></div>
-        <p class="slide-desc">End-to-end redesign of an artisan goods marketplace, focusing on product discovery, checkout friction, and seller credibility signals.</p>
-        <a class="slide-link" onclick="showDetail(1)">View case study →</a>
-      </div>
-    </div>
-
-    <div class="project-slide" id="project-2">
-      <div class="slide-visual">△</div>
-      <div class="slide-content">
-        <div class="slide-num">03 / 05</div>
-        <div class="slide-title">Interactive Data Story</div>
-        <div class="slide-tag-row"><span class="slide-tag">Motion</span><span class="slide-tag">Data Viz</span><span class="slide-tag">3D</span></div>
-        <p class="slide-desc">A scroll-driven data narrative exploring urban heat islands across South Asian cities. Built with D3.js and Three.js, running in the browser at 60fps.</p>
-        <a class="slide-link" onclick="showDetail(2)">View case study →</a>
-      </div>
-    </div>
-
-    <div class="project-slide" id="project-3">
-      <div class="slide-visual">○</div>
-      <div class="slide-content">
-        <div class="slide-num">04 / 05</div>
-        <div class="slide-title">App Onboarding Flow</div>
-        <div class="slide-tag-row"><span class="slide-tag">UX Research</span><span class="slide-tag">Prototyping</span></div>
-        <p class="slide-desc">Six rounds of usability testing with 42 participants to identify where first-time users dropped off. Redesigned disclosure model cut drop-off by 38%.</p>
-        <a class="slide-link" onclick="showDetail(3)">View case study →</a>
-      </div>
-    </div>
-
-    <div class="project-slide" id="project-4">
-      <div class="slide-visual">□</div>
-      <div class="slide-content">
-        <div class="slide-num">05 / 05</div>
-        <div class="slide-title">Editorial Layout System</div>
-        <div class="slide-tag-row"><span class="slide-tag">Typography</span><span class="slide-tag">Design Systems</span></div>
-        <p class="slide-desc">A modular twelve-column grid, a bespoke type scale, and reusable editorial components for a long-form digital magazine.</p>
-        <a class="slide-link" onclick="showDetail(4)">View case study →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════ DETAIL 0 ══════ -->
-  <div id="detail-0" class="page">
-    <a class="detail-back" onclick="backToProjects(0)">← All Projects</a>
+  /* DETAIL PAGES */
+  P.forEach((p, i) => {
+    const nextI     = (i + 1) % total;
+    const nextP     = P[nextI];
+    const isLast    = i === total - 1;
+    html += `
+  <div id="detail-${i}" class="page">
+    <a class="detail-back" onclick="backToProjects(${i})">← All Projects</a>
     <div class="detail-top">
       <div class="detail-intro">
-        <div class="detail-title">Brand Identity System</div>
-        <div class="detail-subtitle">An exploration in visual identity and brand strategy.</div>
-        <div class="detail-tag-row">
-          <span class="detail-tag">Product Design</span>
-          <span class="detail-tag">Branding</span>
-        </div>
-        <div class="detail-description">
-          <p>A complete visual identity for a Series A fintech startup — logo suite, colour palette, type system, icon library, and a component library in Figma ready for engineering handoff. The brand needed to feel trustworthy without being corporate, and approachable without being playful.</p>
-          <p>The process began with competitive auditing across the fintech landscape, identifying visual patterns to subvert. The resulting mark is a geometric form that references both data and direction, rendered in a palette that reads as confident and calm.</p>
-          <p>The type system pairs a geometric sans for headlines with a humanist serif for body copy — an unusual choice in this category that creates immediate differentiation.</p>
-        </div>
+        <div class="detail-title">${p.title}</div>
+        <div class="detail-subtitle">${p.subtitle}</div>
+        <div class="detail-tag-row">${p.tags.map(t=>`<span class="detail-tag">${t}</span>`).join('')}</div>
+        <div class="detail-description">${p.description.map(d=>`<p>${d}</p>`).join('')}</div>
       </div>
-      <div class="detail-hero-img">
-        <!-- Replace: <img src="images/project1-hero.jpg" alt="Brand Identity System"> -->
-        <div class="detail-hero-placeholder">◈</div>
-      </div>
+      ${heroImgHTML(p.heroImg, i)}
     </div>
     <div class="detail-meta">
-      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">2024</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">Lead Designer</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">Figma, Illustrator</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value"><a href="#">View live ↗</a></div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">${p.year}</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">${p.role}</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">${p.tools}</div></div>
+      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value">${p.link ? `<a href="${p.link}" target="_blank">View live ↗</a>` : '—'}</div></div>
     </div>
     <div class="detail-gallery">
-      <div class="detail-gallery-item">
-        <!-- Replace: <img src="images/project1-img1.jpg" alt=""> -->
-        <div class="detail-gallery-placeholder">◈</div>
-      </div>
-      <div class="detail-gallery-item">
-        <!-- Replace: <img src="images/project1-img2.jpg" alt=""> -->
-        <div class="detail-gallery-placeholder">◈</div>
-      </div>
-      <div class="detail-gallery-item">
-        <!-- Replace: <img src="images/project1-img3.jpg" alt=""> -->
-        <div class="detail-gallery-placeholder">◈</div>
-      </div>
+      ${p.galleryImgs.map(src => galleryItemHTML(src, i)).join('')}
     </div>
-    <div class="detail-next" onclick="showDetail(1)">
-      <div><div class="detail-next-label">Next Project</div><div class="detail-next-title">E-commerce Redesign</div></div>
+    <div class="detail-next" onclick="showDetail(${nextI})">
+      <div>
+        <div class="detail-next-label">${isLast ? 'Back to First' : 'Next Project'}</div>
+        <div class="detail-next-title">${nextP.title}</div>
+      </div>
       <div class="detail-next-arrow">→</div>
     </div>
-  </div>
+  </div>`;
+  });
 
-  <!-- ══════ DETAIL 1 ══════ -->
-  <div id="detail-1" class="page">
-    <a class="detail-back" onclick="backToProjects(1)">← All Projects</a>
-    <div class="detail-top">
-      <div class="detail-intro">
-        <div class="detail-title">E-commerce Redesign</div>
-        <div class="detail-subtitle">Conversion-focused UI overhaul for an artisan marketplace.</div>
-        <div class="detail-tag-row">
-          <span class="detail-tag">Web Development</span>
-          <span class="detail-tag">UI Design</span>
-        </div>
-        <div class="detail-description">
-          <p>End-to-end redesign of an artisan goods marketplace, focusing on product discovery, checkout friction, and seller credibility signals. Resulted in a 22% increase in average order value during A/B testing.</p>
-          <p>The core insight from user interviews: buyers didn't trust the platform, they trusted the sellers. The redesign made individual maker stories more prominent, brought craft provenance forward, and reduced the platform's visual footprint in favour of the products themselves.</p>
-          <p>Checkout was simplified from seven steps to three, with persistent progress indicators and trust signals placed at key drop-off points.</p>
-        </div>
-      </div>
-      <div class="detail-hero-img">
-        <!-- Replace: <img src="images/project2-hero.jpg" alt="E-commerce Redesign"> -->
-        <div class="detail-hero-placeholder">◇</div>
-      </div>
-    </div>
-    <div class="detail-meta">
-      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">2024</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">UX / UI Designer</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">Figma, Framer</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value"><a href="#">View live ↗</a></div></div>
-    </div>
-    <div class="detail-gallery">
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">◇</div></div>
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">◇</div></div>
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">◇</div></div>
-    </div>
-    <div class="detail-next" onclick="showDetail(2)">
-      <div><div class="detail-next-label">Next Project</div><div class="detail-next-title">Interactive Data Story</div></div>
-      <div class="detail-next-arrow">→</div>
-    </div>
-  </div>
-
-  <!-- ══════ DETAIL 2 ══════ -->
-  <div id="detail-2" class="page">
-    <a class="detail-back" onclick="backToProjects(2)">← All Projects</a>
-    <div class="detail-top">
-      <div class="detail-intro">
-        <div class="detail-title">Interactive Data Story</div>
-        <div class="detail-subtitle">Scroll-driven narrative built with D3.js and WebGL.</div>
-        <div class="detail-tag-row">
-          <span class="detail-tag">Motion</span><span class="detail-tag">Data Viz</span><span class="detail-tag">3D</span>
-        </div>
-        <div class="detail-description">
-          <p>A scroll-driven data narrative exploring urban heat islands across South Asian cities. Built with D3.js for charts and Three.js for the 3D globe, running entirely in the browser at 60fps.</p>
-          <p>The project began with 40 years of temperature records across 12 cities. The challenge was making the data emotionally legible — not just accurate. Each scroll trigger reveals a new layer of the story, moving from macro climate patterns down to street-level impact.</p>
-          <p>The 3D globe allows users to rotate and explore data points spatially, giving the audience agency over how they navigate the information.</p>
-        </div>
-      </div>
-      <div class="detail-hero-img">
-        <!-- Replace: <img src="images/project3-hero.jpg" alt="Interactive Data Story"> -->
-        <div class="detail-hero-placeholder">△</div>
-      </div>
-    </div>
-    <div class="detail-meta">
-      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">2023</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">Designer & Developer</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">D3.js, Three.js</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value"><a href="#">View live ↗</a></div></div>
-    </div>
-    <div class="detail-gallery">
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">△</div></div>
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">△</div></div>
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">△</div></div>
-    </div>
-    <div class="detail-next" onclick="showDetail(3)">
-      <div><div class="detail-next-label">Next Project</div><div class="detail-next-title">App Onboarding Flow</div></div>
-      <div class="detail-next-arrow">→</div>
-    </div>
-  </div>
-
-  <!-- ══════ DETAIL 3 ══════ -->
-  <div id="detail-3" class="page">
-    <a class="detail-back" onclick="backToProjects(3)">← All Projects</a>
-    <div class="detail-top">
-      <div class="detail-intro">
-        <div class="detail-title">App Onboarding Flow</div>
-        <div class="detail-subtitle">Research-led redesign that cut drop-off by 38%.</div>
-        <div class="detail-tag-row">
-          <span class="detail-tag">UX Research</span><span class="detail-tag">Prototyping</span>
-        </div>
-        <div class="detail-description">
-          <p>Six rounds of usability testing with 42 participants to identify where first-time users dropped off. Redesigned progressive disclosure model cut drop-off by 38% and improved day-7 retention significantly.</p>
-          <p>The original onboarding asked users for 14 pieces of information before they could use the product. After mapping the actual decision points, we restructured into three stages: a two-step hook, a deferred permission ask, and a contextual setup flow triggered by first use.</p>
-          <p>Users reported feeling less pressured, more curious, and more confident in what the product would do for them.</p>
-        </div>
-      </div>
-      <div class="detail-hero-img">
-        <!-- Replace: <img src="images/project4-hero.jpg" alt="App Onboarding Flow"> -->
-        <div class="detail-hero-placeholder">○</div>
-      </div>
-    </div>
-    <div class="detail-meta">
-      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">2023</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">UX Researcher</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">Figma, Maze</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value"><a href="#">View prototype ↗</a></div></div>
-    </div>
-    <div class="detail-gallery">
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">○</div></div>
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">○</div></div>
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">○</div></div>
-    </div>
-    <div class="detail-next" onclick="showDetail(4)">
-      <div><div class="detail-next-label">Next Project</div><div class="detail-next-title">Editorial Layout System</div></div>
-      <div class="detail-next-arrow">→</div>
-    </div>
-  </div>
-
-  <!-- ══════ DETAIL 4 ══════ -->
-  <div id="detail-4" class="page">
-    <a class="detail-back" onclick="backToProjects(4)">← All Projects</a>
-    <div class="detail-top">
-      <div class="detail-intro">
-        <div class="detail-title">Editorial Layout System</div>
-        <div class="detail-subtitle">Modular grid and type system for a long-form digital publication.</div>
-        <div class="detail-tag-row">
-          <span class="detail-tag">Typography</span><span class="detail-tag">Design Systems</span>
-        </div>
-        <div class="detail-description">
-          <p>A modular twelve-column grid, a bespoke type scale, and a library of reusable editorial components for a long-form digital magazine. Designed to accommodate short news items and 10,000-word features with equal elegance.</p>
-          <p>The typographic challenge was creating a scale that worked across five different article formats — briefs, analysis, longform features, interviews, and photo essays — each with distinct reading rhythms.</p>
-          <p>The component library was built in Figma with auto-layout and variables, enabling the editorial team to compose pages without designer involvement while maintaining visual consistency.</p>
-        </div>
-      </div>
-      <div class="detail-hero-img">
-        <!-- Replace: <img src="images/project5-hero.jpg" alt="Editorial Layout System"> -->
-        <div class="detail-hero-placeholder">□</div>
-      </div>
-    </div>
-    <div class="detail-meta">
-      <div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">2023</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">Design Systems Lead</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">Figma, Storybook</div></div>
-      <div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value"><a href="#">View publication ↗</a></div></div>
-    </div>
-    <div class="detail-gallery">
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">□</div></div>
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">□</div></div>
-      <div class="detail-gallery-item"><div class="detail-gallery-placeholder">□</div></div>
-    </div>
-    <div class="detail-next" onclick="showDetail(0)">
-      <div><div class="detail-next-label">Back to First</div><div class="detail-next-title">Brand Identity System</div></div>
-      <div class="detail-next-arrow">→</div>
-    </div>
-  </div>
-
-  <!-- ══════ ABOUT ══════ -->
+  /* ABOUT */
+  const ab = cfg.about;
+  html += `
   <div id="about" class="page">
     <div class="about-inner">
-      <img src="images/about-photo.jpg" alt="Your Name"
-     style="width:160px;height:160px;object-fit:cover;
-            border-radius:50%;margin-bottom:40px;display:block;">
       <h1>About Me</h1>
-      <div class="about-body">
-        <p>Manomay Upadhye is an Industrial Designer, Tinkerer, Sports Enthusiast and an avid hiker who has a penchant for details. .</p>
-        <p>My work tends toward the clean and the quiet, but I know when restraint gives way to something more expressive. I've worked with early-stage startups, agencies, and independently.</p>
-        <p>When I'm not designing, I'm usually reading about type, walking around the city looking at signage, or finding new ways to break my own grid systems.</p>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-group">
-          <h3>Design</h3>
-          <ul>
-            <li>Industrial Design</li><li>UI/UX Design</li><li>Business Development</li>
-            <li>Design Thinking & Process Optimisation</li><li>UX Research</li>
-          </ul>
+      <div class="about-layout">
+        <div class="about-photo-col">
+          ${ab.photo
+            ? `<img src="${ab.photo}" alt="Photo">`
+            : `<div class="about-photo-placeholder">✦</div>`}
         </div>
-        <div class="skill-group">
-          <h3>Softwares</h3>
-          <ul>
-            <li>Fusion360 / OnShape</li><li>ANSYS / SimScale</li><li>Figma</li>
-            <li>Affinity / Procreate</li><li>D3.js</li>
-          </ul>
+        <div class="about-text-col">
+          <div class="about-body">${ab.paragraphs.map(p=>`<p>${p}</p>`).join('')}</div>
+          <div class="skills-grid">
+            ${ab.skills.map(s=>`
+            <div class="skill-group">
+              <h3>${s.heading}</h3>
+              <ul>${s.items.map(item=>`<li>${item}</li>`).join('')}</ul>
+            </div>`).join('')}
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </div>`;
 
-  <!-- ══════ CONTACT ══════ -->
+  /* CONTACT */
+  const co = cfg.contact;
+  html += `
   <div id="contact" class="page">
     <div class="contact-inner">
-      <h1>Get in touch.</h1>
-      <p class="sub">Whether it's a project, a collaboration, or just a conversation — I'd love to hear from you.</p>
+      <h1>${co.heading}</h1>
+      <p class="sub">${co.subtext}</p>
       <div class="contact-form">
         <label>Name</label>
         <input type="text" placeholder="Your name" />
@@ -752,70 +658,71 @@
         <button type="button">Send message</button>
       </div>
       <div class="contact-links">
-        <a href="#" class="contact-link"><span>LinkedIn</span><span>↗</span></a>
-        <a href="#" class="contact-link"><span>GitHub</span><span>↗</span></a>
-        <a href="mailto:hello@yourname.com" class="contact-link"><span>hello@yourname.com</span><span>↗</span></a>
+        ${co.links.map(l=>`
+        <a href="${l.url}" class="contact-link" ${l.url.startsWith('http') ? 'target="_blank"' : ''}>
+          <span>${l.label}</span><span>↗</span>
+        </a>`).join('')}
       </div>
     </div>
-  </div>
+  </div>`;
 
-  <script>
-    function showPage(id) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.querySelectorAll('nav a').forEach(a => {
-        a.classList.toggle('active', a.dataset.page === id);
-      });
-      window.scrollTo(0, 0);
-    }
+  document.getElementById('app').innerHTML = html;
+}
 
-    function goToProject(index) {
-      showPage('projects');
-      setTimeout(() => {
-        const slide = document.getElementById('project-' + index);
-        if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 50);
-    }
+/* ── Routing ──────────────────────────────────────────────── */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === id);
+  });
+  window.scrollTo(0, 0);
+}
 
-    function showDetail(index) {
-      showPage('detail-' + index);
-    }
+function goToProject(index) {
+  showPage('projects');
+  setTimeout(() => {
+    const slide = document.getElementById('project-' + index);
+    if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
+}
 
-    function backToProjects(index) {
-      showPage('projects');
-      setTimeout(() => {
-        const slide = document.getElementById('project-' + index);
-        if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 50);
-    }
+function showDetail(index)     { showPage('detail-' + index); }
 
-    // Drag-to-scroll
-    const scroll = document.getElementById('homeScroll');
-    let isDragging = false, startX, scrollLeft;
+function backToProjects(index) {
+  showPage('projects');
+  setTimeout(() => {
+    const slide = document.getElementById('project-' + index);
+    if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
+}
 
-    scroll.addEventListener('mousedown', e => {
-      isDragging = true;
-      startX = e.pageX - scroll.offsetLeft;
-      scrollLeft = scroll.scrollLeft;
-      scroll.style.userSelect = 'none';
-    });
+/* ── Init ─────────────────────────────────────────────────── */
+renderApp();
 
-    document.addEventListener('mouseup', () => { isDragging = false; scroll.style.userSelect = ''; });
+// Drag-to-scroll
+const scrollEl = document.getElementById('homeScroll');
+let isDragging = false, startX, scrollLeft;
 
-    document.addEventListener('mousemove', e => {
-      if (!isDragging) return;
-      scroll.scrollLeft = scrollLeft - (e.pageX - scroll.offsetLeft - startX) * 1.4;
-    });
+scrollEl.addEventListener('mousedown', e => {
+  isDragging = true; startX = e.pageX - scrollEl.offsetLeft;
+  scrollLeft = scrollEl.scrollLeft; scrollEl.style.userSelect = 'none';
+});
+document.addEventListener('mouseup', () => { isDragging = false; scrollEl.style.userSelect = ''; });
+document.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  scrollEl.scrollLeft = scrollLeft - (e.pageX - scrollEl.offsetLeft - startX) * 1.4;
+});
+scrollEl.addEventListener('click', e => {
+  if (Math.abs(scrollEl.scrollLeft - scrollLeft) > 4) e.stopPropagation();
+}, true);
 
-    scroll.addEventListener('click', e => {
-      if (Math.abs(scroll.scrollLeft - scrollLeft) > 4) e.stopPropagation();
-    }, true);
+// Nav
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', e => { e.preventDefault(); showPage(a.dataset.page); });
+});
+document.getElementById('logoLink').addEventListener('click', e => { e.preventDefault(); showPage('home'); });
 
-    document.querySelectorAll('nav a').forEach(a => {
-      a.addEventListener('click', e => { e.preventDefault(); showPage(a.dataset.page); });
-    });
-
-    document.getElementById('logoLink').addEventListener('click', e => { e.preventDefault(); showPage('home'); });
-  </script>
+</script>
 </body>
 </html>
