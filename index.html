@@ -488,8 +488,7 @@ function renderApp() {
   for (var i = 0; i < P.length; i++) {
     var p   = P[i];
     var num = (i + 1 < 10 ? '0' : '') + (i + 1) + ' / ' + (total < 10 ? '0' : '') + total;
-    html += '<div class="project-slide" id="project-' + i + '">';
-    html += slideVisualHTML(p.slideImg, i);
+    html += '<div class="project-slide" id="project-' + i + '" onclick="showDetail(' + i + ')" style="cursor:pointer;">';    html += slideVisualHTML(p.slideImg, i);
     html += '<div class="slide-content">';
     html += '<div class="slide-num">' + num + '</div>';
     html += '<div class="slide-title">' + p.title + '</div>';
