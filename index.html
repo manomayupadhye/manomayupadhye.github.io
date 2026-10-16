@@ -1,676 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio</title>
-  <link id="favicon" rel="icon" type="image/png" href="">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet"/>
+  <title>artha by Manomay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg: #F5F5EF;
-      --header-bg: #F6F5F0;
-      --text: #111111;
-      --border: #DDDDD7;
-      --font-header: 'Source Sans Pro', sans-serif;
-      --font-body: 'Noto Sans', sans-serif;
+      --bg:   #F5F5EF;
+      --text: #0E0E0E;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--bg);
+      overflow: hidden;
+    }
 
     body {
-      background: var(--bg); color: var(--text);
-      font-family: var(--font-body); font-size: 26px; min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      cursor: crosshair;
     }
 
-    header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--header-bg); border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 56px; height: 72px;
+    /* ── brand name ── */
+    .brand {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 36px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: rgba(14,14,14,0.55);
+      user-select: none;
     }
 
-    .logo {
-      font-family: var(--font-header); font-size: 36px; font-weight: 400;
-      letter-spacing: -0.5px; color: var(--text); text-decoration: none;
-      display: flex; align-items: center;
+    /* ── main text ── */
+    .glitch-wrap {
+      position: relative;
+      display: inline-block;
+      user-select: none;
     }
 
-    .logo img { height: 36px; width: auto; }
-
-    nav { display: flex; gap: 48px; align-items: center; }
-
-    nav a {
-      font-family: var(--font-header); font-size: 18px; font-weight: 400;
-      color: var(--text); text-decoration: none; opacity: 0.55;
-      letter-spacing: 0.02em; transition: opacity 0.2s; position: relative;
+    .glitch-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(48px, 10vw, 128px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--text);
+      line-height: 1;
+      position: relative;
+      z-index: 1;
     }
 
-    nav a::after {
-      content: ''; position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 1px; background: var(--text); transition: width 0.25s ease;
+    /* pseudo-element glitch layers */
+    .glitch-text::before,
+    .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      line-height: inherit;
+      opacity: 0;
+      pointer-events: none;
     }
 
-    nav a:hover, nav a.active { opacity: 1; }
-    nav a:hover::after, nav a.active::after { width: 100%; }
-
-    .page { display: none; min-height: 100vh; padding-top: 72px; }
-    .page.active { display: block; }
-
-    /* HOME */
-    .hero { padding: 80px 56px 60px; }
-    .hero h1 { font-family: var(--font-header); font-size: 36px; font-weight: 400; line-height: 1.3; max-width: 640px; margin-bottom: 18px; }
-    .hero p { font-size: 22px; opacity: 0.6; max-width: 520px; line-height: 1.6; }
-
-    .section-label { font-family: var(--font-header); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.4; padding: 0 56px; margin-bottom: 24px; }
-
-    .projects-scroll-wrap { padding: 0 56px 80px; overflow: hidden; }
-    .projects-scroll { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 20px; cursor: grab; }
-    .projects-scroll:active { cursor: grabbing; }
-    .projects-scroll::-webkit-scrollbar { height: 4px; }
-    .projects-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 4px; }
-    .projects-scroll::-webkit-scrollbar-thumb { background: var(--text); border-radius: 4px; }
-
-    .project-card { flex: 0 0 340px; height: 420px; scroll-snap-align: start; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; cursor: pointer; position: relative; background: var(--header-bg); transition: transform 0.2s, box-shadow 0.2s; }
-    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.08); }
-
-    .card-thumb { width: 100%; height: 240px; background: var(--border); overflow: hidden; }
-    .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .card-thumb-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--font-header); font-size: 72px; opacity: 0.15; }
-
-    .card-body { padding: 24px 24px 20px; }
-    .card-tag { font-family: var(--font-header); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.4; margin-bottom: 10px; }
-    .card-title { font-family: var(--font-header); font-size: 22px; font-weight: 600; margin-bottom: 10px; line-height: 1.2; }
-    .card-desc { font-size: 16px; opacity: 0.55; line-height: 1.5; }
-    .card-arrow { position: absolute; bottom: 20px; right: 20px; font-size: 20px; opacity: 0.3; transition: opacity 0.2s, transform 0.2s; }
-    .project-card:hover .card-arrow { opacity: 0.8; transform: translateX(4px); }
-
-    /* PROJECTS LIST */
-    .projects-header { padding: 60px 56px 40px; border-bottom: 1px solid var(--border); }
-    .projects-header h1 { font-family: var(--font-header); font-size: 36px; font-weight: 400; }
-
-    .project-slide { padding: 64px 56px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; min-height: 60vh; }
-    .project-slide:nth-child(even) .slide-visual { order: 2; }
-    .project-slide:nth-child(even) .slide-content { order: 1; }
-
-    .slide-visual { aspect-ratio: 4/3; background: var(--header-bg); border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: var(--font-header); font-size: 96px; overflow: hidden; transition: opacity 0.3s ease; }
-    .slide-visual img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.4; transition: opacity 0.3s ease; }
-    .project-slide:hover .slide-visual img { opacity: 1; }
-
-    .slide-num { font-family: var(--font-header); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.35; margin-bottom: 20px; }
-    .slide-title { font-family: var(--font-header); font-size: 36px; font-weight: 600; margin-bottom: 16px; line-height: 1.15; }
-    .slide-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-    .slide-tag { font-family: var(--font-header); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--border); padding: 4px 12px; border-radius: 2px; }
-    .slide-desc { font-size: 20px; line-height: 1.65; opacity: 0.7; margin-bottom: 32px; }
-    .slide-link { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-header); font-size: 16px; letter-spacing: 0.04em; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 2px; opacity: 0.7; transition: opacity 0.2s; cursor: pointer; }
-    .slide-link:hover { opacity: 1; }
-
-    /* DETAIL */
-    .detail-back { display: block; padding: 32px 56px 0; font-family: var(--font-header); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.45; cursor: pointer; text-decoration: none; color: var(--text); transition: opacity 0.2s; }
-    .detail-back:hover { opacity: 0.9; }
-
-    .detail-top { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); min-height: 72vh; }
-    .detail-intro { padding: 48px 56px 64px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
-
-    .detail-title { font-family: var(--font-header); font-size: 36px; font-weight: 600; line-height: 1.1; margin-bottom: 16px; }
-    .detail-subtitle { font-family: var(--font-header); font-size: 20px; font-weight: 400; opacity: 0.5; margin-bottom: 28px; line-height: 1.4; }
-    .detail-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
-    .detail-tag { font-family: var(--font-header); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--border); padding: 5px 14px; border-radius: 2px; }
-    .detail-description { font-size: 20px; line-height: 1.8; opacity: 0.7; }
-    .detail-description p { margin-bottom: 20px; }
-    .detail-description p:last-child { margin-bottom: 0; }
-
-    .detail-hero-img { background: var(--border); overflow: hidden; }
-    .detail-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .detail-hero-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--font-header); font-size: 120px; opacity: 0.1; }
-
-    .detail-meta { display: flex; border-bottom: 1px solid var(--border); }
-    .detail-meta-item { flex: 1; padding: 36px 40px; border-right: 1px solid var(--border); }
-    .detail-meta-item:last-child { border-right: none; }
-    .detail-meta-label { font-family: var(--font-header); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.4; margin-bottom: 10px; }
-    .detail-meta-value { font-family: var(--font-header); font-size: 18px; }
-    .detail-meta-value a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: border-color 0.2s; }
-    .detail-meta-value a:hover { border-color: var(--text); }
-
-    .detail-gallery { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--border); }
-    .detail-gallery-item { aspect-ratio: 4/3; background: var(--header-bg); border-right: 1px solid var(--border); overflow: hidden; }
-    .detail-gallery-item:last-child { border-right: none; }
-    .detail-gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .detail-gallery-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--font-header); font-size: 48px; opacity: 0.1; }
-
-    .detail-next { padding: 56px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.2s; }
-    .detail-next:hover { background: var(--header-bg); }
-    .detail-next-label { font-family: var(--font-header); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.4; margin-bottom: 8px; }
-    .detail-next-title { font-family: var(--font-header); font-size: 28px; font-weight: 400; }
-    .detail-next-arrow { font-size: 32px; opacity: 0.3; transition: transform 0.2s, opacity 0.2s; }
-    .detail-next:hover .detail-next-arrow { transform: translateX(8px); opacity: 0.8; }
-
-    /* ABOUT */
-    .about-inner { padding: 80px 56px; }
-    .about-inner h1 { font-family: var(--font-header); font-size: 36px; font-weight: 400; margin-bottom: 48px; }
-    .about-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: start; }
-    .about-photo-col img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; border: 1px solid var(--border); }
-    .about-photo-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--header-bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 48px; opacity: 0.15; }
-    .about-body p { font-size: 22px; line-height: 1.75; opacity: 0.75; margin-bottom: 28px; }
-    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border); }
-    .skill-group h3 { font-family: var(--font-header); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.4; margin-bottom: 16px; }
-    .skill-group ul { list-style: none; }
-    .skill-group li { font-size: 20px; opacity: 0.7; padding: 6px 0; border-bottom: 1px solid var(--border); }
-
-    /* CONTACT */
-    .contact-inner { max-width: 640px; margin: 0 auto; padding: 80px 56px; }
-    .contact-inner h1 { font-family: var(--font-header); font-size: 36px; font-weight: 400; margin-bottom: 16px; }
-    .contact-inner .sub { font-size: 20px; opacity: 0.55; margin-bottom: 56px; line-height: 1.6; }
-    .contact-form label { display: block; font-family: var(--font-header); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-bottom: 8px; }
-    .contact-form input, .contact-form textarea { display: block; width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border); padding: 12px 0; font-family: var(--font-body); font-size: 20px; color: var(--text); outline: none; margin-bottom: 36px; transition: border-color 0.2s; resize: none; }
-    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--text); }
-    .contact-form textarea { min-height: 120px; }
-    .contact-form button { font-family: var(--font-header); font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--text); color: var(--bg); border: none; padding: 16px 40px; cursor: pointer; transition: opacity 0.2s; }
-    .contact-form button:hover { opacity: 0.75; }
-    .contact-links { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border); }
-    .contact-link { display: flex; justify-content: space-between; align-items: center; font-size: 20px; text-decoration: none; color: var(--text); opacity: 0.6; padding: 16px 0; border-bottom: 1px solid var(--border); transition: opacity 0.2s; }
-    .contact-link:hover { opacity: 1; }
-
-    /* ERROR BANNER */
-    .config-error { background: #fff0f0; border: 2px solid #cc0000; color: #cc0000; font-family: monospace; font-size: 14px; padding: 24px 32px; margin: 100px 32px 32px; border-radius: 4px; white-space: pre-wrap; line-height: 1.6; }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .detail-top { grid-template-columns: 1fr; min-height: auto; }
-      .detail-intro { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 24px; }
-      .detail-hero-img { min-height: 50vw; }
-      .detail-gallery { grid-template-columns: 1fr 1fr; }
-      .detail-gallery-item:last-child { display: none; }
-      .detail-meta { flex-wrap: wrap; }
-      .detail-meta-item { flex: 0 0 50%; border-bottom: 1px solid var(--border); }
-      .about-layout { grid-template-columns: 1fr; }
-      .about-photo-col img, .about-photo-placeholder { aspect-ratio: 4/3; }
+    .glitch-text::before {
+      color: #c00;
+      z-index: -1;
     }
 
-    @media (max-width: 768px) {
-      header { padding: 0 24px; }
-      nav { gap: 24px; }
-      .hero { padding: 48px 24px 40px; }
-      .section-label { padding: 0 24px; }
-      .projects-scroll-wrap { padding: 0 24px 60px; }
-      .project-slide { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px; min-height: auto; }
-      .project-slide:nth-child(even) .slide-visual,
-      .project-slide:nth-child(even) .slide-content { order: unset; }
-      .projects-header { padding: 40px 24px 32px; }
-      .about-inner, .contact-inner { padding: 60px 24px; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .detail-back { padding: 24px 24px 0; }
-      .detail-next { padding: 40px 24px; }
-      .detail-gallery { grid-template-columns: 1fr; }
-      .detail-gallery-item:not(:first-child) { display: none; }
-      .detail-meta-item { flex: 0 0 100%; }
+    .glitch-text::after {
+      color: #00c;
+      z-index: -2;
+    }
+
+    /* active glitch state — toggled by JS */
+    .glitch-text.is-glitching::before {
+      animation: glitch-r 0.18s steps(1) forwards;
+    }
+
+    .glitch-text.is-glitching::after {
+      animation: glitch-b 0.18s steps(1) forwards;
+    }
+
+    .glitch-text.is-glitching {
+      animation: glitch-main 0.18s steps(1) forwards;
+    }
+
+    @keyframes glitch-main {
+      0%   { clip-path: inset(0 0 85% 0); transform: translate(-2px, 0); }
+      10%  { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
+      20%  { clip-path: inset(50% 0 30% 0); transform: translate(-1px, 0); }
+      30%  { clip-path: inset(70% 0 5% 0);  transform: translate(3px, 0); }
+      40%  { clip-path: inset(0 0 0 0);     transform: translate(0, 0); }
+      50%  { clip-path: inset(30% 0 55% 0); transform: translate(-3px, 0); }
+      60%  { clip-path: inset(10% 0 75% 0); transform: translate(1px, 0); }
+      70%  { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 0); }
+      80%  { clip-path: inset(0 0 0 0);     transform: translate(0, 0); }
+      90%  { clip-path: inset(45% 0 40% 0); transform: translate(2px, 0); }
+      100% { clip-path: inset(0 0 0 0);     transform: translate(0, 0); opacity: 1; }
+    }
+
+    @keyframes glitch-r {
+      0%   { opacity: 0.7; transform: translate(4px, -2px);  clip-path: inset(10% 0 70% 0); }
+      15%  { opacity: 0.5; transform: translate(-3px, 1px);  clip-path: inset(60% 0 15% 0); }
+      30%  { opacity: 0.8; transform: translate(2px, 3px);   clip-path: inset(30% 0 45% 0); }
+      45%  { opacity: 0;   transform: translate(0, 0);       }
+      60%  { opacity: 0.6; transform: translate(-4px, -1px); clip-path: inset(75% 0 5% 0);  }
+      75%  { opacity: 0.4; transform: translate(3px, 2px);   clip-path: inset(5% 0 80% 0);  }
+      90%  { opacity: 0.7; transform: translate(-2px, -3px); clip-path: inset(50% 0 25% 0); }
+      100% { opacity: 0;   transform: translate(0, 0);       }
+    }
+
+    @keyframes glitch-b {
+      0%   { opacity: 0.6; transform: translate(-4px, 2px);  clip-path: inset(50% 0 20% 0); }
+      20%  { opacity: 0.8; transform: translate(3px, -1px);  clip-path: inset(10% 0 65% 0); }
+      40%  { opacity: 0.5; transform: translate(-2px, 3px);  clip-path: inset(75% 0 5% 0);  }
+      60%  { opacity: 0;   transform: translate(0, 0);       }
+      70%  { opacity: 0.7; transform: translate(4px, -2px);  clip-path: inset(25% 0 50% 0); }
+      85%  { opacity: 0.4; transform: translate(-3px, 1px);  clip-path: inset(60% 0 15% 0); }
+      100% { opacity: 0;   transform: translate(0, 0);       }
+    }
+
+    /* scanline overlay — subtle, always present */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(14,14,14,0.025) 2px,
+        rgba(14,14,14,0.025) 4px
+      );
+      pointer-events: none;
+      z-index: 100;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <a href="#" id="logoLink" class="logo"></a>
-    <nav id="mainNav">
-      <a href="#" data-page="projects">Projects</a>
-      <a href="#" data-page="about">About Me</a>
-      <a href="#" data-page="contact">Contact</a>
-    </nav>
-  </header>
+  <p class="brand">artha by Manomay</p>
 
-  <div id="app"></div>
+  <div class="glitch-wrap">
+    <span class="glitch-text" id="gt" data-text="Under Construction">Under Construction</span>
+  </div>
 
 <script>
+  var el = document.getElementById('gt');
+  var glitching = false;
 
-// ===========================================================
-// SITE CONFIG
-// Edit everything in this block. Nothing else needs changing.
-// ===========================================================
+  function triggerGlitch(duration) {
+    if (glitching) return;
+    glitching = true;
+    el.classList.add('is-glitching');
 
-var SITE_CONFIG = {
+    setTimeout(function() {
+      el.classList.remove('is-glitching');
 
-  // Browser tab
-  title:   "ārtha by Manomay",
-  favicon: "images/manomay-monogramblack.svg",
+      // short pause then allow another
+      setTimeout(function() {
+        glitching = false;
+      }, 80);
+    }, duration || 180);
+  }
 
-  // Header logo: use logoText for plain text, or logoImage for an image file.
-  // To use an image, set logoText to "" and set logoImage to the file path.
-  logoText:  "manomay-monogram-svg",
-  logoImage: "images/manomay-monogramblack.svg",
-
-  // Home page
-  heroHeading: "Designed with integrity, <br> Designed with intention. </br>",
-  heroSubtext:  "A collection of work across product design and development.",
-
-  // About page
-  about: {
-    photo: "images/manomay-formal.jpeg",
-    paragraphs: [
-      "I am an industrial designer, motorsports enthusiast, and an avid learner with a penchant for detail.",
-      "I try to work on projects which reflect my ideas- typically leaning towards clean, minimal products that prioritise function over form and aren't overdesigned",
-      "When I'm not designing, I'm usually reading about the political and economic state of thew world, experimenting with culinary craft, or watching motorsports."
-    ],
-    skills: [
-      {
-        heading: "Design",
-        items: ["Industrial Design", "Computer Aided Design", "Computational Fluid Dynamics", "UI / UX Design", "New Product Development", "Rapid Prototyping"]
-      },
-      {
-        heading: "Skills",
-        items: ["Fusion360 / OnShape", "ANSYS / SimScale", "Figma", "Affinity Suite", "HTML / CSS / JS", "Woodworking"]
+  // random interval glitch
+  function scheduleRandom() {
+    // fire between every 1.5s and 7s
+    var delay = 1500 + Math.random() * 5500;
+    setTimeout(function() {
+      // sometimes do a quick burst of 2-3
+      var bursts = Math.random() < 0.3 ? Math.floor(Math.random() * 3) + 2 : 1;
+      for (var b = 0; b < bursts; b++) {
+        (function(i) {
+          setTimeout(function() {
+            triggerGlitch(120 + Math.random() * 100);
+          }, i * 220);
+        })(b);
       }
-    ]
-  },
-
-  // Contact page
-  contact: {
-    heading: "Get in touch.",
-    subtext:  "Whether it's a project, a collaboration, or just a conversation, I'd love to hear from you.",
-    links: [
-      { label: "LinkedIn",           url: "https://www.linkedin.com/in/manomayupadhye/" },
-      { label: "Instagram @arthabymanomay",             url: "https://www.instagram.com/arthabymanomay/" },
-      { label: "Instagram @curatedbymanomay",             url: "https://www.instagram.com/curatedbymanomay/" },
-      { label: "manomay.upadhye.edu@gmail.com", url: "mailto:manomay.upadhye.edu@gmail.com" }
-    ]
-  },
-
-  // Projects
-  // For any image you don't have yet, leave the value as "".
-  // A placeholder symbol will show until you add the real image.
-  projects: [
-    {
-      title:    "Bajaj SmokeChamp",
-      subtitle: "An exploration in developing new products",
-      tags:     ["Product Design", "New Product Development"],
-      cardDesc:  "Designing an affordable and easy-to-use smoke detection solution tailored for Indian households",
-      slideDesc: "A casestudy in New Product Development for Bajaj Electronics in creating an affordable smoke-detecting solution for the Tier2-3 cities.",
-      description: [
-        "The brief for this project was to design an affordable, reliable, and easy-to-use smoke detection solution tailored for Indian households, especially in Tier 2 and Tier 3 cities, that minimizes false alarms, builds trust as a local brand, and raises fire safety awareness while overcoming barriers of price, enforcement, and accessibility.",
-        "The process began with a study into how the existing market for smoke detectors, and then trying to find gaps into which Bajaj Electronics could work with.",
-        "This was a group project- where I primarily dealt with trying to figure out the electronics behind the project and modelling it in 3D, along with also working on research and ideation."
-      ],
-      thumbImg:    "images/project1-bajaj_smokechamp-render-frontleft.png",
-      slideImg:    "images/project1-bajaj_smokechamp-render-frontleft.png",
-      heroImg:     "images/project1-bajaj_smokechamp-render-frontleft.png",
-      galleryImgs: ["images/project1-bajaj_smokechamp-sketches-v4.png", "images/project1-bajaj_smokechamp-render-interior.png", "images/project1-bajaj_smokechamp-render-left.png"],
-      year:  "2025",
-      role:  "CAD Modeller, Electronics Engineer",
-      tools: "Fusion 360, Arduino IDE",
-      link:  ""
-    },
-    {
-      title:    "Banyan Bloom",
-      subtitle: "Taking Gaudi-inspired ideas to Indian-inspired furniture.",
-      tags:     ["Furniture Design", "Hackathon"],
-      cardDesc:  "A Design-sprint focused on creating furniture inspired by the work of Antoni Gaudi through the lens of Indian culture.",
-      slideDesc: "A hackathon challenged set to create a near-industry ready furniture product that is a harmonius marriage of two different cultures.",
-      description: [
-        "This was a project that stemmed from a furniture design hackathon set by the furniture design company Meuble Craftsmen Co. in partnership with my university to design furniture inspired by Gaudi design principles that can be sold in Barcelona.",
-        "The idea we had was to make a bar stand inspired by the shape of fungi and the banyan tree, which is a key part of Indian culture.",
-        "The cabinet has a main cavity which is used for storing bottles of alcohol, and there are two shelves on top in the shape of leaves to hold wine glasses and spirits glasses along with a surface for mixing."
-      ],
-      thumbImg:    "images/project2-banyanbloom-photos-lightbg.JPG",
-      slideImg:    "images/project2-banyanbloom-photos-lightbg.JPG",
-      heroImg:     "images/project2-banyanbloom-photos-lightbg.JPG",
-      galleryImgs: ["images/project2-banyanbloom-photos-darkbg.JPG", "images/project2-banyanbloom-render-front.jpg", "images/project2-banyanbloom-render-topleft.jpg"],
-      year:  "2026",
-      role:  "CAD Modeller, Woodworker",
-      tools: "Fusion360, Woodwoorking skills",
-      link:  ""
-    },
-    {
-      title:    "Interactive Healthcare Kiosk",
-      subtitle: "A case-study in healthcare navigation technology",
-      tags:     ["Healthcare", "Information Design", "Product Design"],
-      cardDesc:  "A multi-modal wayfinding system for the healthcare environment.",
-      slideDesc: "A study in creating an intuitive and more usable wayfinding system for the healthcare system in India.",
-      description: [
-        "This was a group project that explored how the navigation and wayfinding systems across large hospitals in our city worked, and the impact that these systems had on the patients and their families visiting the hospitals.",
-        "We found out that lack of straightforward signs, outdatedd information, and illegible fonts contribute to stress, fatigue, and time wasted for patients and their family members.",
-        "We decided to make a system which integrated a multi-functional kiosk along with a colour system that divided the hospital into 4 zones, reducing temporal and cognitive pressure on the users."
-      ],
-      thumbImg:    "images/project3-kiosk_render-frontleft-closeup.PNG",
-      slideImg:    "images/project3-kiosk_render-frontleft-closeup.PNG",
-      heroImg:     "images/project3-kiosk_render-frontleft-closeup.PNG",
-      galleryImgs: ["images/project3-kiosk_render-frontright.png", "images/project3-kiosk_floormap-info-v2.png", "images/project3-kiosk_wip.png"],
-      year:  "2025",
-      role:  "CAD Designer, UI Designer",
-      tools: "Fusion 360, Figma, SketchUp",
-      link:  ""
-    },
-    {
-      title:    "Submarine Project",
-      subtitle: "Creating an Underwater  ROV.",
-      tags:     ["Product Design", "Electronics Design"],
-      cardDesc:  "Research-led design to create a submarine base off of an ESP32 micro-controller.",
-      slideDesc: "A study in creating a submarine that functioned off of an ESP32 based system wireless.",
-      description: [
-        "The idea was to create an ROV/Submarine from scratch using an ES32 microcontroller and motordrivers.",
-        "It was an exercise in trying to create an underwater, waterproof ROV with its own custom leadscrew-based bouyancy system.",
-        "It was a duos project where I was dealing with the electronics design and also helping out with creating the chassis system."
-      ],
-      thumbImg:    "images/project4-submarine-renderside.png",
-      slideImg:    "images/project4-submarine-renderside.png",
-      heroImg:     "images/project4-submarine-renderside.png",
-      galleryImgs: ["images/project4-submarine-electronics-v2.png", "images/project4-submarine-sketches-v2.png", ""],
-      year:  "2025",
-      role:  "CAD Modeller, Electronics Engineer",
-      tools: "Fusion360, Arduino IDE, Electronics",
-      link:  ""
-    },
-    {
-      title:    "UTS App Re-Design",
-      subtitle: "Redesigning app interfaces to make them more usable.",
-      tags:     ["UI Design", "Internship"],
-      cardDesc:  "An internship project at CRIS on redesigning the UTS app UI.",
-      slideDesc: "An internship project at CRIS on redesigning the UTS app UI.",
-      description: [
-        "This was an internship project at the Centre for Railway Information Systems in Mumbai as a First Year intern.",
-        "I was working with the UTS team to create a possible redesign for the UTS App.",
-        "The UI refresh was based in creating a more user-friendly and visually appealing UI for the app- while keeping it fit inside of the existing design system that consists of IRCTC, RailMadad and other apps."
-      ],
-      thumbImg:    "images/project5-uts-home.png",
-      slideImg:    "images/project5-uts-home.png",
-      heroImg:     "images/project5-uts-punarjivatu.png",
-      galleryImgs: ["images/project5-uts-journeybooking.png", "images/project5-uts-ticketbooking.png", "images/project5-uts-currentticket.png"],
-      year:  "2024",
-      role:  "UI Intern",
-      tools: "Figma",
-      link:  ""
-    },
-    {
-      title:    "Skills Exploration",
-      subtitle: "An exploration of CAD Modelling and Rendering Skills.",
-      tags:     ["CAD", "Product Design"],
-      cardDesc:  "An exercise in working with CAD and rendering",
-      slideDesc: "An exercise in working with CAD and rendering.",
-      description: [
-        "These are various projects across the years where I was using Fusion360 to model and render.",
-        "All of these projects are separate from academic ones- intended to just be an exercise in improving modelling and rendering skills.",
-        "These projects include creating and rendering lamps and indoor equipment as these would test out lighting and complex surfacing geometry."
-      ],
-      thumbImg:    "images/project6-skills-vipp-blender-front.PNG",
-      slideImg:    "images/project6-skills-vipp-blender-front.PNG",
-      heroImg:     "images/project6-skills-vipp-blender-closeup.PNG",
-      galleryImgs: ["images/project6-skills-redlamp.png", "images/project6-skills-frostylamp.png", "images/project6-skills-disneylamp.png"],
-      year:  "2023-2026",
-      role:  "CAD Modeller",
-      tools: "Fusion360",
-      link:  ""
-    }
-  ]
-
-};
-
-// ===========================================================
-// RENDERER -- no need to edit below this line
-// ===========================================================
-
-var PH = ["(o)", "<>", "/\\", "( )", "[ ]"];
-
-function imgTag(src, alt) {
-  return '<img src="' + src + '" alt="' + (alt || '') + '">';
-}
-
-function thumbHTML(src, i) {
-  if (src) {
-    return '<div class="card-thumb">' + imgTag(src) + '</div>';
-  }
-  return '<div class="card-thumb"><div class="card-thumb-inner">' + PH[i] + '</div></div>';
-}
-
-function slideVisualHTML(src, i) {
-  if (src) {
-    return '<div class="slide-visual">' + imgTag(src) + '</div>';
-  }
-  return '<div class="slide-visual">' + PH[i] + '</div>';
-}
-
-function heroHTML(src, i) {
-  if (src) {
-    return '<div class="detail-hero-img">' + imgTag(src) + '</div>';
-  }
-  return '<div class="detail-hero-img"><div class="detail-hero-placeholder">' + PH[i] + '</div></div>';
-}
-
-function galleryItemHTML(src, i) {
-  if (src) {
-    return '<div class="detail-gallery-item">' + imgTag(src) + '</div>';
-  }
-  return '<div class="detail-gallery-item"><div class="detail-gallery-placeholder">' + PH[i] + '</div></div>';
-}
-
-function renderApp() {
-  var cfg   = SITE_CONFIG;
-  var P     = cfg.projects;
-  var total = P.length;
-  var html  = '';
-
-  // Head
-  document.title = cfg.title;
-  if (cfg.favicon) {
-    document.getElementById('favicon').href = cfg.favicon;
+      scheduleRandom();
+    }, delay);
   }
 
-  // Logo
-  var logoEl = document.getElementById('logoLink');
-  if (cfg.logoImage) {
-    logoEl.innerHTML = imgTag(cfg.logoImage, cfg.logoText || 'Logo');
-  } else {
-    logoEl.textContent = cfg.logoText;
-  }
+  scheduleRandom();
 
-  // HOME
-  html += '<div id="home" class="page active">';
-  html += '<div class="hero">';
-  html += '<h1>' + cfg.heroHeading + '</h1>';
-  html += '<p>' + cfg.heroSubtext + '</p>';
-  html += '</div>';
-  html += '<div class="section-label">Selected Projects</div>';
-  html += '<div class="projects-scroll-wrap"><div class="projects-scroll" id="homeScroll">';
-  for (var i = 0; i < P.length; i++) {
-    var p = P[i];
-    html += '<div class="project-card" onclick="goToProject(' + i + ')">';
-    html += thumbHTML(p.thumbImg, i);
-    html += '<div class="card-body">';
-    html += '<div class="card-tag">' + p.tags[0] + '</div>';
-    html += '<div class="card-title">' + p.title + '</div>';
-    html += '<div class="card-desc">' + p.cardDesc + '</div>';
-    html += '</div>';
-    html += '<div class="card-arrow">-&gt;</div>';
-    html += '</div>';
-  }
-  html += '</div></div></div>';
-
-  // PROJECTS LIST
-  html += '<div id="projects" class="page">';
-  html += '<div class="projects-header"><h1>Projects</h1></div>';
-  for (var i = 0; i < P.length; i++) {
-    var p   = P[i];
-    var num = (i + 1 < 10 ? '0' : '') + (i + 1) + ' / ' + (total < 10 ? '0' : '') + total;
-    html += '<div class="project-slide" id="project-' + i + '" onclick="showDetail(' + i + ')" style="cursor:pointer;">';    html += slideVisualHTML(p.slideImg, i);
-    html += '<div class="slide-content">';
-    html += '<div class="slide-num">' + num + '</div>';
-    html += '<div class="slide-title">' + p.title + '</div>';
-    html += '<div class="slide-tag-row">';
-    for (var t = 0; t < p.tags.length; t++) {
-      html += '<span class="slide-tag">' + p.tags[t] + '</span>';
-    }
-    html += '</div>';
-    html += '<p class="slide-desc">' + p.slideDesc + '</p>';
-    html += '<a class="slide-link" onclick="showDetail(' + i + ')">View case study -&gt;</a>';
-    html += '</div></div>';
-  }
-  html += '</div>';
-
-  // DETAIL PAGES
-  for (var i = 0; i < P.length; i++) {
-    var p     = P[i];
-    var nextI = (i + 1) % total;
-    var nextP = P[nextI];
-    var isLast = (i === total - 1);
-
-    html += '<div id="detail-' + i + '" class="page">';
-    html += '<a class="detail-back" onclick="backToProjects(' + i + ')">&larr; All Projects</a>';
-    html += '<div class="detail-top">';
-    html += '<div class="detail-intro">';
-    html += '<div class="detail-title">' + p.title + '</div>';
-    html += '<div class="detail-subtitle">' + p.subtitle + '</div>';
-    html += '<div class="detail-tag-row">';
-    for (var t = 0; t < p.tags.length; t++) {
-      html += '<span class="detail-tag">' + p.tags[t] + '</span>';
-    }
-    html += '</div>';
-    html += '<div class="detail-description">';
-    for (var d = 0; d < p.description.length; d++) {
-      html += '<p>' + p.description[d] + '</p>';
-    }
-    html += '</div></div>';
-    html += heroHTML(p.heroImg, i);
-    html += '</div>';
-
-    html += '<div class="detail-meta">';
-    html += '<div class="detail-meta-item"><div class="detail-meta-label">Year</div><div class="detail-meta-value">' + p.year + '</div></div>';
-    html += '<div class="detail-meta-item"><div class="detail-meta-label">Role</div><div class="detail-meta-value">' + p.role + '</div></div>';
-    html += '<div class="detail-meta-item"><div class="detail-meta-label">Tools</div><div class="detail-meta-value">' + p.tools + '</div></div>';
-    html += '<div class="detail-meta-item"><div class="detail-meta-label">Link</div><div class="detail-meta-value">';
-    html += p.link ? '<a href="' + p.link + '" target="_blank">View live &nearr;</a>' : '&mdash;';
-    html += '</div></div></div>';
-
-    html += '<div class="detail-gallery">';
-    for (var g = 0; g < p.galleryImgs.length; g++) {
-      html += galleryItemHTML(p.galleryImgs[g], i);
-    }
-    html += '</div>';
-
-    html += '<div class="detail-next" onclick="showDetail(' + nextI + ')">';
-    html += '<div><div class="detail-next-label">' + (isLast ? 'Back to First' : 'Next Project') + '</div>';
-    html += '<div class="detail-next-title">' + nextP.title + '</div></div>';
-    html += '<div class="detail-next-arrow">&rarr;</div>';
-    html += '</div></div>';
-  }
-
-  // ABOUT
-  var ab = cfg.about;
-  html += '<div id="about" class="page"><div class="about-inner">';
-  html += '<h1>About Me</h1>';
-  html += '<div class="about-layout">';
-  html += '<div class="about-photo-col">';
-  if (ab.photo) {
-    html += imgTag(ab.photo, 'Photo');
-  } else {
-    html += '<div class="about-photo-placeholder">&#10022;</div>';
-  }
-  html += '</div>';
-  html += '<div class="about-text-col"><div class="about-body">';
-  for (var i = 0; i < ab.paragraphs.length; i++) {
-    html += '<p>' + ab.paragraphs[i] + '</p>';
-  }
-  html += '</div><div class="skills-grid">';
-  for (var s = 0; s < ab.skills.length; s++) {
-    var sk = ab.skills[s];
-    html += '<div class="skill-group"><h3>' + sk.heading + '</h3><ul>';
-    for (var it = 0; it < sk.items.length; it++) {
-      html += '<li>' + sk.items[it] + '</li>';
-    }
-    html += '</ul></div>';
-  }
-  html += '</div></div></div></div></div>';
-
-  // CONTACT
-  var co = cfg.contact;
-  html += '<div id="contact" class="page"><div class="contact-inner">';
-  html += '<h1>' + co.heading + '</h1>';
-  html += '<p class="sub">' + co.subtext + '</p>';
-  html += '<div class="contact-form">';
-  html += '<label>Name</label><input type="text" placeholder="Your name" />';
-  html += '<label>Email</label><input type="email" placeholder="your@email.com" />';
-  html += '<label>Message</label><textarea placeholder="Tell me what you\'re working on..."></textarea>';
-  html += '<button type="button">Send message</button>';
-  html += '</div>';
-  html += '<div class="contact-links">';
-  for (var i = 0; i < co.links.length; i++) {
-    var lnk = co.links[i];
-    var ext = lnk.url.indexOf('http') === 0 ? ' target="_blank"' : '';
-    html += '<a href="' + lnk.url + '" class="contact-link"' + ext + '>';
-    html += '<span>' + lnk.label + '</span><span>&nearr;</span></a>';
-  }
-  html += '</div></div></div>';
-
-  document.getElementById('app').innerHTML = html;
-}
-
-// Routing
-function showPage(id) {
-  var pages = document.querySelectorAll('.page');
-  for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
-  document.getElementById(id).classList.add('active');
-  var links = document.querySelectorAll('nav a');
-  for (var i = 0; i < links.length; i++) {
-    links[i].classList.toggle('active', links[i].getAttribute('data-page') === id);
-  }
-  window.scrollTo(0, 0);
-}
-
-function goToProject(index) {
-  showPage('projects');
-  setTimeout(function() {
-    var slide = document.getElementById('project-' + index);
-    if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 50);
-}
-
-function showDetail(index) { showPage('detail-' + index); }
-
-function backToProjects(index) {
-  showPage('projects');
-  setTimeout(function() {
-    var slide = document.getElementById('project-' + index);
-    if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 50);
-}
-
-// Run — with visible error if something goes wrong
-try {
-  renderApp();
-} catch(e) {
-  document.getElementById('app').innerHTML =
-    '<div class="config-error">' +
-    'There is an error in SITE_CONFIG. Open this file and look for the problem near the text shown below.\n\n' +
-    e.toString() +
-    '\n\nCommon causes:\n' +
-    '- A missing comma between two items\n' +
-    '- A quote mark inside a string (use the HTML code &amp;#39; instead of an apostrophe)\n' +
-    '- A missing closing bracket ] or brace }' +
-    '</div>';
-}
-
-// Drag-to-scroll (runs after render)
-setTimeout(function() {
-  var scrollEl = document.getElementById('homeScroll');
-  if (!scrollEl) return;
-  var isDragging = false, startX, scrollLeft;
-  scrollEl.addEventListener('mousedown', function(e) {
-    isDragging = true; startX = e.pageX - scrollEl.offsetLeft;
-    scrollLeft = scrollEl.scrollLeft; scrollEl.style.userSelect = 'none';
+  // hover glitch
+  document.querySelector('.glitch-wrap').addEventListener('mouseenter', function() {
+    triggerGlitch(200);
   });
-  document.addEventListener('mouseup', function() { isDragging = false; scrollEl.style.userSelect = ''; });
-  document.addEventListener('mousemove', function(e) {
-    if (!isDragging) return;
-    scrollEl.scrollLeft = scrollLeft - (e.pageX - scrollEl.offsetLeft - startX) * 1.4;
+
+  document.querySelector('.glitch-wrap').addEventListener('mousemove', function() {
+    if (!glitching && Math.random() < 0.15) {
+      triggerGlitch(120);
+    }
   });
-  scrollEl.addEventListener('click', function(e) {
-    if (Math.abs(scrollEl.scrollLeft - scrollLeft) > 4) e.stopPropagation();
-  }, true);
-}, 100);
-
-// Nav
-document.querySelectorAll('nav a').forEach(function(a) {
-  a.addEventListener('click', function(e) { e.preventDefault(); showPage(a.getAttribute('data-page')); });
-});
-document.getElementById('logoLink').addEventListener('click', function(e) { e.preventDefault(); showPage('home'); });
-
 </script>
 </body>
 </html>
